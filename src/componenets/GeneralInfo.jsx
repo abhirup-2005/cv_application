@@ -1,51 +1,87 @@
-import { useState } from "react"
-
 export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
-    function handleFirstName(e) {
-        setGeneralInfo({ ...generalInfo, firstName: e.target.value });
-    }
-
-    function handleLastName(e) {
-        setGeneralInfo({ ...generalInfo, lastName: e.target.value });
-    }
-
-    function handleEmail(e) {
-        setGeneralInfo({ ...generalInfo, email: e.target.value });
-    }
-
-    function handlePhone(e) {
-        setGeneralInfo({ ...generalInfo, phone: e.target.value });
+    function handleChange(field, value) {
+        setGeneralInfo({ ...generalInfo, [field]: value });
     }
 
     return (
         <div className="generalInfo">
-            <h1>General Information: </h1>
-            <div>
-                <fieldset>
-                    <legend>Name: </legend>
-                    <lable>
-                        First Name:{" "}
-                        <input type="text" onChange={handleFirstName}></input>
-                    </lable>
-                    <label>
-                        Last Name:{" "}
-                        <input type="text" onChange={handleLastName}></input>
-                    </label>
-                </fieldset>
+            <h1>General Information:</h1>
 
-                <fieldset>
-                    <legend>Contact Information: </legend>
-                    <label>
-                        Email:{" "}
-                        <input type="email" onChange={handleEmail}></input>
-                    </label>
-                    <label>
-                        Phone No.:{" "}
-                        <input type="number" onChange={handlePhone}></input>
-                    </label>
-                </fieldset>
-            </div>
+            <fieldset>
+                <legend>Name:</legend>
+
+                <label>
+                    First Name:
+                    <input
+                        type="text"
+                        value={generalInfo.firstName}
+                        onChange={(e) => handleChange("firstName", e.target.value)}
+                    />
+                </label>
+
+                <label>
+                    Last Name:
+                    <input
+                        type="text"
+                        value={generalInfo.lastName}
+                        onChange={(e) => handleChange("lastName", e.target.value)}
+                    />
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact Information:</legend>
+
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        value={generalInfo.email}
+                        onChange={(e) => handleChange("email", e.target.value)}
+                    />
+                </label>
+
+                <label>
+                    Phone No.:
+                    <input
+                        type="tel"
+                        value={generalInfo.phone}
+                        onChange={(e) => handleChange("phone", e.target.value)}
+                    />
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Social:</legend>
+
+                <label>
+                    Linked In:
+                    <input
+                        type="text"
+                        value={generalInfo.linkedIn}
+                        onChange={(e) => handleChange("linkedIn", e.target.value)}
+                    />
+                </label>
+
+                <label>
+                    Github:
+                    <input
+                        type="text"
+                        value={generalInfo.github}
+                        onChange={(e) => handleChange("github", e.target.value)}
+                    />
+                </label>
+            </fieldset>
+
+            <label>
+                Portfolio:
+                <input
+                    type="text"
+                    value={generalInfo.portfolio}
+                    onChange={(e) => handleChange("portfolio", e.target.value)}
+                />
+            </label>
         </div>
-    )
+    );
 }

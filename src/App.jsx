@@ -7,7 +7,9 @@ function App() {
   const [generalInfo, setGeneralInfo] = useState(
     { 
       firstName: "",  lastName: "", 
-      email: "", phone: "", 
+      email: "", phone: "",
+      linkedIn: "", github: "",
+      portfolio: "",
     }
   );
 
@@ -37,7 +39,12 @@ function App() {
         generalInfo={generalInfo}
         setGeneralInfo={setGeneralInfo}
       />
-      <p>Name: {generalInfo.firstName + " " + generalInfo.lastName} Email: {generalInfo.email} Phone: {generalInfo.phone}</p>
+      <p>Name: {generalInfo.firstName + " " + generalInfo.lastName}
+        Email: {generalInfo.email} Phone: {generalInfo.phone}
+        Linked In: {generalInfo.linkedIn}
+        Github: {generalInfo.github}
+        Portfolio: {generalInfo.portfolio}
+      </p>
 
       <EducationalExpperience educationList={educationList} setEducationList={setEducationList} />
       <ul>
