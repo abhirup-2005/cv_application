@@ -1,4 +1,4 @@
-function EducationalInfo({ entry, updateEntry, removeEntry }) {
+function EducationalInfo({ entry, updateEntry, removeEntry, showRemove }) {
     return (
         <li>
             <label>
@@ -28,20 +28,22 @@ function EducationalInfo({ entry, updateEntry, removeEntry }) {
                 />
             </label>
 
-            <button onClick={() => removeEntry(entry.id)}>
-                Remove
-            </button>
+            {showRemove && (
+                <button onClick={() => removeEntry(entry.id)}>
+                    Remove
+                </button>
+            )}
         </li>
     );
 }
 
-export default function EducationalExperience({educationList, setEducationList}) {
+export default function EducationalExperience({ educationList, setEducationList }) {
     function addEducation() {
-        setEducationList([...educationList,{id: crypto.randomUUID(), schoolName: "", study: "", date: "",}]);
+        setEducationList([...educationList, { id: crypto.randomUUID(), schoolName: "", study: "", date: "", }]);
     }
 
     function updateEntry(id, field, value) {
-        setEducationList( educationList.map((entry) => entry.id === id ? { ...entry, [field]: value } : entry));
+        setEducationList(educationList.map((entry) => entry.id === id ? { ...entry, [field]: value } : entry));
     }
 
     function removeEntry(id) {
@@ -59,6 +61,7 @@ export default function EducationalExperience({educationList, setEducationList})
                         entry={education}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
+                        showRemove={educationList.length > 1}
                     />
                 ))}
             </ul>

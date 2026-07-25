@@ -1,4 +1,4 @@
-function WorkInfo({ entry, updateEntry, removeEntry }) {
+function WorkInfo({ entry, updateEntry, removeEntry, showRemove }) {
     return (
         <li>
             <label>
@@ -46,9 +46,11 @@ function WorkInfo({ entry, updateEntry, removeEntry }) {
                 />
             </label>
 
-            <button onClick={() => removeEntry(entry.id)}>
-                Remove
-            </button>
+            {showRemove && (
+                <button onClick={() => removeEntry(entry.id)}>
+                    Remove
+                </button>
+            )}
         </li>
     );
 }
@@ -56,8 +58,8 @@ function WorkInfo({ entry, updateEntry, removeEntry }) {
 export default function PracticalExperience({ workList, setWorkList }) {
     function addWork() {
         setWorkList(
-            [...workList, 
-                { id: crypto.randomUUID(), companyName: "", position: "", responsibilities: "", startDate: "", endDate: ""}
+            [...workList,
+            { id: crypto.randomUUID(), companyName: "", position: "", responsibilities: "", startDate: "", endDate: "" }
             ]
         );
     }
@@ -80,6 +82,7 @@ export default function PracticalExperience({ workList, setWorkList }) {
                         entry={work}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
+                        showRemove={workList.length > 1}
                     />
                 ))}
             </ul>
