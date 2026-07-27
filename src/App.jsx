@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import GeneralInfo from './componenets/GeneralInfo.jsx';
-import EducationalExpperience from './componenets/EducationExp.jsx';
-import PracticalExperience from './componenets/PracticalExp.jsx';
+import LeftSidebarForm from './componenets/LeftSideBarForm.jsx';
+import CvPreview from './componenets/CvPreview.jsx';
+import HeaderBar from './componenets/HeaderBar.jsx';
 
-function App() {
+import './styles/App.css'
+
+export default function App() {
   const [generalInfo, setGeneralInfo] = useState(
-    { 
-      firstName: "",  lastName: "", 
+    {
+      firstName: "", lastName: "",
       email: "", phone: "",
       linkedIn: "", github: "",
       portfolio: "",
@@ -14,67 +16,40 @@ function App() {
   );
 
   const [educationList, setEducationList] = useState([
-    { 
-      id: crypto.randomUUID(), 
-      schoolName: "", 
-      study: "", 
-      date: "", 
+    {
+      id: crypto.randomUUID(),
+      schoolName: "",
+      study: "",
+      date: "",
     }
   ]);
 
   const [workList, setWorkList] = useState([
-    { 
-      id: crypto.randomUUID(), 
-      companyName: "", 
-      position: "", 
-      responsibilities: "", 
-      startDate: "", 
+    {
+      id: crypto.randomUUID(),
+      companyName: "",
+      position: "",
+      responsibilities: "",
+      startDate: "",
       endDate: "",
     }
   ]);
 
   return (
     <>
-      <GeneralInfo
-        generalInfo={generalInfo}
-        setGeneralInfo={setGeneralInfo}
+      <HeaderBar />
+
+      <LeftSidebarForm
+        generalInfo={generalInfo} setGeneralInfo={setGeneralInfo}
+        educationList={educationList} setEducationList={setEducationList}
+        workList={workList} setWorkList={setWorkList}
       />
-      <p>Name: {generalInfo.firstName + " " + generalInfo.lastName}
-        Email: {generalInfo.email} Phone: {generalInfo.phone}
-        Linked In: {generalInfo.linkedIn}
-        Github: {generalInfo.github}
-        Portfolio: {generalInfo.portfolio}
-      </p>
 
-      <EducationalExpperience educationList={educationList} setEducationList={setEducationList} />
-      <ul>
-        {educationList.map((edu) => {
-          return (
-            <li key={edu.id}> 
-            School: {edu.schoolName} 
-            Study: {edu.study} 
-            Date: {edu.date}
-            </li>
-          )
-        })}
-      </ul>
-
-      <PracticalExperience workList={workList} setWorkList={setWorkList} />
-      <ul>
-        {workList.map((work) => {
-          return (
-            <li key={work.id}> 
-            Company: {work.companyName} 
-            Position: {work.position} 
-            Responsibilities: {work.responsibilities} 
-            Start Date: {work.startDate} 
-            End Date: {work.endDate}
-            </li>
-          )
-        })}
-      </ul>
+      <CvPreview 
+        generalInfo={generalInfo}
+        educationList={educationList}
+        workList={workList}
+      />
     </>
   )
 }
-
-export default App
