@@ -35,6 +35,17 @@ export default function App() {
     }
   ]);
 
+  const [skillList, setSkillList] = useState([
+    {
+      id: crypto.randomUUID(),
+      skill: "",
+    }
+  ])
+
+  const [projectList, setProjectList] = useState([]);
+
+  const [languageList, setLanguageList] = useState([]);
+
   const [showPreview, setShowPreview] = useState(false);
 
   return (
@@ -44,12 +55,12 @@ export default function App() {
       <div className="mainContent">
         <div className={showPreview ? "hideMobile" : ""}>
           <LeftSidebarForm
-            generalInfo={generalInfo}
-            setGeneralInfo={setGeneralInfo}
-            educationList={educationList}
-            setEducationList={setEducationList}
-            workList={workList}
-            setWorkList={setWorkList}
+            generalInfo={generalInfo} setGeneralInfo={setGeneralInfo}
+            educationList={educationList} setEducationList={setEducationList}
+            workList={workList} setWorkList={setWorkList}
+            skillList={skillList} setSkillList={setSkillList}
+            projectList={projectList} setProjectList={setProjectList}
+            languageList={languageList} setLanguageList={setLanguageList}
           />
         </div>
 
@@ -58,6 +69,9 @@ export default function App() {
             generalInfo={generalInfo}
             educationList={educationList}
             workList={workList}
+            skillList={skillList}
+            projectList={projectList}
+            languageList={languageList}
           />
         </div>
 

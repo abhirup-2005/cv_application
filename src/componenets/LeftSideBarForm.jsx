@@ -1,6 +1,9 @@
 import GeneralInfo from './GeneralInfo.jsx';
 import EducationalExpperience from './EducationExp.jsx';
 import PracticalExperience from './PracticalExp.jsx';
+import Skill from './Skill.jsx';
+import Project from './Projects.jsx';
+import Language from './Language.jsx';
 
 export default function LeftSidebarForm(props) {
   return (
@@ -13,6 +16,12 @@ export default function LeftSidebarForm(props) {
       <EducationalExpperience educationList={props.educationList} setEducationList={props.setEducationList} />
 
       <PracticalExperience workList={props.workList} setWorkList={props.setWorkList} />
+
+      <Skill skillList={props.skillList} setSkillList={props.setSkillList}/>
+
+      <Project projectList={props.projectList} setProjectList={props.setProjectList}/>
+
+      <Language languageList={props.languageList} setLanguageList={props.setLanguageList}/>
     </section>
   )
 }

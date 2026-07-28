@@ -33,6 +33,44 @@ export default function CvPreview(props) {
           )
         })}
       </ul>
+
+      <ul>
+        {props.skillList.map((skill) => {
+          return (
+            <li key={skill.id}>{skill.skill}</li>
+          )
+        })}
+      </ul>
+
+      <ul>
+        {props.projectList.map((project) => {
+          return (
+            <li key={project.id}>
+              Title: {project.title}
+              Description: {project.description}
+              Start Date: {project.startDate}
+              End Date: {project.endDate}
+              <ul>
+              {project.links.map((link) => {
+                return (
+                  <li key={link.id}>
+                    {link.title}: {link.url}
+                  </li>
+                )
+              })}
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+
+      <ul>
+        {props.languageList.map((language) => {
+          return (
+            <li key={language.id}>{language.language}</li>
+          )
+        })}
+      </ul>
     </section>
   )
 }
