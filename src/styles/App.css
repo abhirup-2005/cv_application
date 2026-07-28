@@ -1,12 +1,37 @@
-#root {
+.mainContent {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    grid-template-rows: repeat(2, min-content);
     gap: 20px;
 }
 
 .header {
-    grid-column: 1/-1;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+/* Hidden on desktop */
+.previewCV {
+    display: none;
+}
+
+/* Desktop */
+.hideMobile {
+    display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .mainContent {
+        grid-template-columns: 1fr;
+    }
+
+    .previewCV {
+        display: block;
+    }
+
+    .hideMobile {
+        display: none;
+    }
 }

@@ -35,21 +35,33 @@ export default function App() {
     }
   ]);
 
+  const [showPreview, setShowPreview] = useState(false);
+
   return (
     <>
-      <HeaderBar />
+      <HeaderBar showPreview={showPreview} setShowPreview={setShowPreview} />
 
-      <LeftSidebarForm
-        generalInfo={generalInfo} setGeneralInfo={setGeneralInfo}
-        educationList={educationList} setEducationList={setEducationList}
-        workList={workList} setWorkList={setWorkList}
-      />
+      <div className="mainContent">
+        <div className={showPreview ? "hideMobile" : ""}>
+          <LeftSidebarForm
+            generalInfo={generalInfo}
+            setGeneralInfo={setGeneralInfo}
+            educationList={educationList}
+            setEducationList={setEducationList}
+            workList={workList}
+            setWorkList={setWorkList}
+          />
+        </div>
 
-      <CvPreview 
-        generalInfo={generalInfo}
-        educationList={educationList}
-        workList={workList}
-      />
+        <div className={showPreview ? "" : "hideMobile"}>
+          <CvPreview
+            generalInfo={generalInfo}
+            educationList={educationList}
+            workList={workList}
+          />
+        </div>
+
+      </div>
     </>
   )
 }
