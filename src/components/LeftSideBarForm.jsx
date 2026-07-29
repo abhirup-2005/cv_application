@@ -4,6 +4,8 @@ import PracticalExperience from './PracticalExp.jsx';
 import Skill from './Skill.jsx';
 import Project from './Projects.jsx';
 import Language from './Language.jsx';
+import Achievement from './Achievement.jsx';
+import Certificate from './Certification.jsx';
 
 export default function LeftSidebarForm(props) {
   return (
@@ -21,7 +23,12 @@ export default function LeftSidebarForm(props) {
 
       <Project projectList={props.projectList} setProjectList={props.setProjectList}/>
 
+      <Achievement achievementList={props.achievementList} setAchievementList={props.setAchievementList} />
+
+      <Certificate certificateList={props.certificateList} setCertificateList={props.setCertificateList} />
+
       <Language languageList={props.languageList} setLanguageList={props.setLanguageList}/>
+
     </section>
   )
 }

@@ -1,4 +1,4 @@
-function WorkInfo({ entry, updateEntry, removeEntry, showRemove }) {
+function WorkInfo({ entry, updateEntry, removeEntry }) {
     return (
         <li>
             <label>
@@ -46,11 +46,10 @@ function WorkInfo({ entry, updateEntry, removeEntry, showRemove }) {
                 />
             </label>
 
-            {showRemove && (
-                <button onClick={() => removeEntry(entry.id)}>
-                    Remove
-                </button>
-            )}
+            <button onClick={() => removeEntry(entry.id)}>
+                Remove
+            </button>
+
         </li>
     );
 }
@@ -82,7 +81,6 @@ export default function PracticalExperience({ workList, setWorkList }) {
                         entry={work}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
-                        showRemove={workList.length > 1}
                     />
                 ))}
             </ul>

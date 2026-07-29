@@ -1,4 +1,4 @@
-function EducationalInfo({ entry, updateEntry, removeEntry, showRemove }) {
+function EducationalInfo({ entry, updateEntry, removeEntry }) {
     return (
         <li>
             <label>
@@ -28,11 +28,11 @@ function EducationalInfo({ entry, updateEntry, removeEntry, showRemove }) {
                 />
             </label>
 
-            {showRemove && (
-                <button onClick={() => removeEntry(entry.id)}>
-                    Remove
-                </button>
-            )}
+
+            <button onClick={() => removeEntry(entry.id)}>
+                Remove
+            </button>
+
         </li>
     );
 }
@@ -61,7 +61,6 @@ export default function EducationalExperience({ educationList, setEducationList 
                         entry={education}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
-                        showRemove={educationList.length > 1}
                     />
                 ))}
             </ul>

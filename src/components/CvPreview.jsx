@@ -1,6 +1,9 @@
+import Achievement from "./Achievement"
+
 export default function CvPreview(props) {
   return (
     <section className='cvPreview'>
+      <h1>General Info</h1>
       <p>Name: {props.generalInfo.firstName + " " + props.generalInfo.lastName}
         Email: {props.generalInfo.email} Phone: {props.generalInfo.phone}
         Linked In: {props.generalInfo.linkedIn}
@@ -8,6 +11,7 @@ export default function CvPreview(props) {
         Portfolio: {props.generalInfo.portfolio}
       </p>
 
+      <h1>Education</h1>
       <ul>
         {props.educationList.map((edu) => {
           return (
@@ -19,7 +23,8 @@ export default function CvPreview(props) {
           )
         })}
       </ul>
-
+      
+      <h1>Work Experience</h1>
       <ul>
         {props.workList.map((work) => {
           return (
@@ -33,7 +38,8 @@ export default function CvPreview(props) {
           )
         })}
       </ul>
-
+      
+      <h1>Skills</h1>
       <ul>
         {props.skillList.map((skill) => {
           return (
@@ -41,7 +47,8 @@ export default function CvPreview(props) {
           )
         })}
       </ul>
-
+      
+      <h1>Projects</h1>
       <ul>
         {props.projectList.map((project) => {
           return (
@@ -51,19 +58,52 @@ export default function CvPreview(props) {
               Start Date: {project.startDate}
               End Date: {project.endDate}
               <ul>
-              {project.links.map((link) => {
-                return (
-                  <li key={link.id}>
-                    {link.title}: {link.url}
-                  </li>
-                )
-              })}
+                {project.links.map((link) => {
+                  return (
+                    <li key={link.id}>
+                      {link.title}: {link.url}
+                    </li>
+                  )
+                })}
+              </ul>
+            </li>
+          )
+        })}
+      </ul>
+      
+      <h1>Achievements</h1>
+      <ul>
+        {props.achievementList.map((achievement) => {
+          return (
+            <li key={achievement.id}>{achievement.achievement}</li>
+          )
+        })}
+      </ul>
+
+      <h1>Certifications</h1>
+      <ul>
+        {props.certificateList.map((certificate) => {
+          return (
+            <li key={certificate.id}>
+              Title: {certificate.title}
+              Description: {certificate.description}
+              Start Date: {certificate.startDate}
+              End Date: {certificate.endDate}
+              <ul>
+                {certificate.links.map((link) => {
+                  return (
+                    <li key={link.id}>
+                      {link.title}: {link.url}
+                    </li>
+                  )
+                })}
               </ul>
             </li>
           )
         })}
       </ul>
 
+      <h1>Languages Known</h1>
       <ul>
         {props.languageList.map((language) => {
           return (

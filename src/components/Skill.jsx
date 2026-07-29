@@ -13,7 +13,7 @@ export default function Skill({ skillList, setSkillList }) {
 
     return (
         <div>
-            <h1>Skill</h1>
+            <h1>Skills</h1>
             <button onClick={addSkill}>Add</button>
             <ul>
                 {skillList.map((skill) => (
@@ -22,7 +22,6 @@ export default function Skill({ skillList, setSkillList }) {
                         entry={skill}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
-                        showRemove={skillList.length > 1}
                     />
                 ))}
             </ul>
@@ -30,7 +29,7 @@ export default function Skill({ skillList, setSkillList }) {
     )
 }
 
-function SkillInfo({ entry, updateEntry, removeEntry, showRemove }) {
+function SkillInfo({ entry, updateEntry, removeEntry }) {
     return (
         <li>
             <input
@@ -39,11 +38,10 @@ function SkillInfo({ entry, updateEntry, removeEntry, showRemove }) {
                 onChange={(e) => updateEntry(entry.id, "skill", e.target.value)}
             />
 
-            {showRemove && (
-                <button onClick={() => removeEntry(entry.id)}>
-                    Remove
-                </button>
-            )}
+            <button onClick={() => removeEntry(entry.id)}>
+                Remove
+            </button>
+
         </li>
     );
 }

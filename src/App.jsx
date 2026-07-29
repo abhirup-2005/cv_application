@@ -35,16 +35,15 @@ export default function App() {
     }
   ]);
 
-  const [skillList, setSkillList] = useState([
-    {
-      id: crypto.randomUUID(),
-      skill: "",
-    }
-  ])
+  const [skillList, setSkillList] = useState([])
 
   const [projectList, setProjectList] = useState([]);
 
   const [languageList, setLanguageList] = useState([]);
+
+  const [achievementList, setAchievementList] = useState([]);
+
+  const [certificateList, setCertificateList] = useState([]);
 
   const [showPreview, setShowPreview] = useState(false);
 
@@ -55,12 +54,14 @@ export default function App() {
       <div className="mainContent">
         <div className={showPreview ? "hideMobile" : ""}>
           <LeftSidebarForm
-            generalInfo={generalInfo} setGeneralInfo={setGeneralInfo}
-            educationList={educationList} setEducationList={setEducationList}
-            workList={workList} setWorkList={setWorkList}
-            skillList={skillList} setSkillList={setSkillList}
-            projectList={projectList} setProjectList={setProjectList}
-            languageList={languageList} setLanguageList={setLanguageList}
+            generalInfo={generalInfo}               setGeneralInfo={setGeneralInfo}
+            educationList={educationList}           setEducationList={setEducationList}
+            workList={workList}                     setWorkList={setWorkList}
+            skillList={skillList}                   setSkillList={setSkillList}
+            projectList={projectList}               setProjectList={setProjectList}
+            languageList={languageList}             setLanguageList={setLanguageList}
+            achievementList={achievementList}       setAchievementList={setAchievementList}
+            certificateList={certificateList}       setCertificateList={setCertificateList}
           />
         </div>
 
@@ -72,6 +73,8 @@ export default function App() {
             skillList={skillList}
             projectList={projectList}
             languageList={languageList}
+            achievementList={achievementList}
+            certificateList={certificateList}
           />
         </div>
 
