@@ -1,4 +1,6 @@
-import Achievement from "./Achievement"
+import Achievement from "./Achievement";
+
+import "../styles/CvPreview.css";
 
 export default function CvPreview(props) {
   return (
@@ -11,7 +13,7 @@ export default function CvPreview(props) {
         Portfolio: {props.generalInfo.portfolio}
       </p>
 
-      <h1>Education</h1>
+      <h1 className={props.educationList.length === 0 ? "hidden" : "visible"}>Education</h1>
       <ul>
         {props.educationList.map((edu) => {
           return (
@@ -24,7 +26,7 @@ export default function CvPreview(props) {
         })}
       </ul>
       
-      <h1>Work Experience</h1>
+      <h1 className={props.workList.length === 0 ? "hidden" : "visible"}>Work Experience</h1>
       <ul>
         {props.workList.map((work) => {
           return (
@@ -39,7 +41,7 @@ export default function CvPreview(props) {
         })}
       </ul>
       
-      <h1>Skills</h1>
+      <h1 className={props.skillList.length === 0 ? "hidden" : "visible"}>Skills</h1>
       <ul>
         {props.skillList.map((skill) => {
           return (
@@ -48,7 +50,7 @@ export default function CvPreview(props) {
         })}
       </ul>
       
-      <h1>Projects</h1>
+      <h1 className={props.projectList.length === 0 ? "hidden" : "visible"}>Projects</h1>
       <ul>
         {props.projectList.map((project) => {
           return (
@@ -71,7 +73,7 @@ export default function CvPreview(props) {
         })}
       </ul>
       
-      <h1>Achievements</h1>
+      <h1 className={props.achievementList.length === 0 ? "hidden" : "visible"}>Achievements</h1>
       <ul>
         {props.achievementList.map((achievement) => {
           return (
@@ -80,7 +82,7 @@ export default function CvPreview(props) {
         })}
       </ul>
 
-      <h1>Certifications</h1>
+      <h1 className={props.certificateList.length === 0 ? "hidden" : "visible"}>Certifications</h1>
       <ul>
         {props.certificateList.map((certificate) => {
           return (
@@ -103,7 +105,7 @@ export default function CvPreview(props) {
         })}
       </ul>
 
-      <h1>Languages Known</h1>
+      <h1 className={props.languageList.length === 0 ? "hidden" : "visible"}>Languages Known</h1>
       <ul>
         {props.languageList.map((language) => {
           return (
