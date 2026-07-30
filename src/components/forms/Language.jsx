@@ -1,3 +1,5 @@
+import "../../styles/forms/Language.css";
+
 export default function Language({ languageList, setLanguageList }) {
     function addLanguage() {
         setLanguageList([...languageList, { id: crypto.randomUUID(), skill: "", }]);

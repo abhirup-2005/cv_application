@@ -1,3 +1,5 @@
+import "../../styles/forms/General.css";
+
 export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
     function handleChange(field, value) {

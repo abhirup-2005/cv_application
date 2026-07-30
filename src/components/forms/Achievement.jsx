@@ -1,3 +1,5 @@
+import "../../styles/forms/Achievement.css";
+
 export default function Achievement({ achievementList, setAchievementList }) {
     function addAchievement() {
         setAchievementList([...achievementList, { id: crypto.randomUUID(), skill: "", }]);

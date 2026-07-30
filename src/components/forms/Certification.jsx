@@ -1,3 +1,5 @@
+import "../../styles/forms/Certification.css";
+
 export default function Certificate({ certificateList, setCertificateList }) {
     function addCertificate() {
         setCertificateList([...certificateList, {

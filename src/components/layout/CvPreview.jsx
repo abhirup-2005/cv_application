@@ -1,6 +1,4 @@
-import Achievement from "./Achievement";
-
-import "../styles/CvPreview.css";
+import "../../styles/layout/CvPreview.css";
 
 export default function CvPreview(props) {
   return (

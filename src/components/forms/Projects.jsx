@@ -1,3 +1,5 @@
+import "../../styles/forms/Projects.css";
+
 export default function Project({ projectList, setProjectList }) {
     function addProject() {
         setProjectList([...projectList, {

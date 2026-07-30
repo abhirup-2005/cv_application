@@ -1,3 +1,5 @@
+import "../../styles/forms/PracticalExp.css";
+
 function WorkInfo({ entry, updateEntry, removeEntry }) {
     return (
         <li>

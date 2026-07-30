@@ -1,3 +1,5 @@
+import "../../styles/layout/HeaderBar.css";
+
 export default function HeaderBar({ showPreview, setShowPreview }) {
   return (
     <div className='header'>

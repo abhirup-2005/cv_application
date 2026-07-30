@@ -1,3 +1,5 @@
+import "../../styles/forms/Education.css";
+
 function EducationalInfo({ entry, updateEntry, removeEntry }) {
     return (
         <li>

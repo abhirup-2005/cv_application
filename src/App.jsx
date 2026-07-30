@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import LeftSidebarForm from './components/LeftSideBarForm.jsx';
-import CvPreview from './components/CvPreview.jsx';
-import HeaderBar from './components/HeaderBar.jsx';
+import LeftSidebarForm from './components/layout/LeftSideBarForm.jsx';
+import CvPreview from './components/layout/CvPreview.jsx';
+import HeaderBar from './components/layout/HeaderBar.jsx';
 
 import './styles/App.css'
 

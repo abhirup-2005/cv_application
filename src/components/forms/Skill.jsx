@@ -1,3 +1,5 @@
+import "../../styles/forms/Skill.css";
+
 export default function Skill({ skillList, setSkillList }) {
     function addSkill() {
         setSkillList([...skillList, { id: crypto.randomUUID(), skill: "", }]);
