@@ -6,6 +6,26 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
         setGeneralInfo({ ...generalInfo, [field]: value });
     }
 
+    function addLink() {
+        setGeneralInfo(prev => ({
+            ...prev, links: [...prev.links,
+            {
+                id: crypto.randomUUID(),
+                title: "",
+                url: "",
+            },
+            ],
+        }));
+    }
+
+    function updateLink(id, field, value) {
+        setGeneralInfo(prev => ({ ...prev, links: prev.links.map(link => link.id === id ? { ...link, [field]: value } : link), }));
+    }
+
+    function removeLink(id) {
+        setGeneralInfo(prev => ({ ...prev, links: prev.links.filter(link => link.id !== id), }));
+    }
+
     return (
         <div className="generalInfo">
             <h1>General Information:</h1>
@@ -55,35 +75,40 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
             </fieldset>
 
             <fieldset>
-                <legend>Social:</legend>
+                <legend>Useful Links:</legend>
+                <button type="button" onClick={addLink}>
+                    + Add Link
+                </button>
 
-                <label>
-                    Linked In:
-                    <input
-                        type="text"
-                        value={generalInfo.linkedIn}
-                        onChange={(e) => handleChange("linkedIn", e.target.value)}
-                    />
-                </label>
+                {generalInfo.links.map(link => (
+                    <div key={link.id}>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            value={link.title}
+                            onChange={(e) =>
+                                updateLink(link.id, "title", e.target.value)
+                            }
+                        />
 
-                <label>
-                    Github:
-                    <input
-                        type="text"
-                        value={generalInfo.github}
-                        onChange={(e) => handleChange("github", e.target.value)}
-                    />
-                </label>
+                        <input
+                            type="url"
+                            placeholder="URL"
+                            value={link.url}
+                            onChange={(e) =>
+                                updateLink(link.id, "url", e.target.value)
+                            }
+                        />
+
+                        <button
+                            type="button"
+                            onClick={() => removeLink(link.id)}
+                        >
+                            Remove
+                        </button>
+                    </div>
+                ))}
             </fieldset>
-
-            <label>
-                Portfolio:
-                <input
-                    type="text"
-                    value={generalInfo.portfolio}
-                    onChange={(e) => handleChange("portfolio", e.target.value)}
-                />
-            </label>
         </div>
     );
 }

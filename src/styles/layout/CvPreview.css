@@ -1,7 +1,402 @@
-.hidden {
-    display: none;
+/* ===========================
+   GOOGLE FONT (OPTIONAL)
+=========================== */
+
+/* Uncomment if you want */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+/* ===========================
+   ROOT
+=========================== */
+
+.cvPreview {
+    width: 210mm;
+    min-height: 297mm;
+
+    margin: 30px auto;
+    padding: 28px 36px;
+
+    background: white;
+    color: #111;
+
+    font-family: "Times New Roman", serif;
+    font-size: 14px;
+    line-height: 1.35;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.15);
+
+    box-sizing: border-box;
 }
 
-.visible {
-    display: block;
+
+/* ===========================
+   HEADER
+=========================== */
+
+.cv-header{
+    margin-bottom:22px;
+}
+
+.cv-name{
+    text-align:center;
+
+    font-size:44px;
+    font-weight:bold;
+
+    margin:0;
+    padding:0;
+}
+
+.cv-contact{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-top:8px;
+
+    font-size:15px;
+}
+
+.cv-contact span{
+    white-space:nowrap;
+}
+
+.cv-contact span:not(:last-child)::after{
+    content:" | ";
+    margin-left:8px;
+    color:#666;
+}
+
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.section-title{
+
+    margin-top:22px;
+    margin-bottom:12px;
+
+    padding-bottom:3px;
+
+    border-bottom:1px solid #111;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    font-size:22px;
+    font-weight:normal;
+}
+
+
+/* ===========================
+   ENTRY
+=========================== */
+
+.entry{
+
+    margin-bottom:18px;
+}
+
+
+/* ===========================
+   HEADER ROW
+=========================== */
+
+.entry-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    gap:15px;
+}
+
+.entry-left{
+    flex:1;
+}
+
+.entry-right{
+
+    text-align:right;
+
+    min-width:180px;
+}
+
+
+/* ===========================
+   SUB HEADER
+=========================== */
+
+.entry-subheader{
+
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:2px;
+    margin-bottom:6px;
+
+    color:#444;
+}
+
+.entry-subheader em{
+    font-style:italic;
+}
+
+.entry-subheader .entry-right{
+    text-align:right;
+}
+
+
+/* ===========================
+   HEADINGS
+=========================== */
+
+.entry h3{
+
+    margin:0;
+
+    font-size:21px;
+    font-weight:bold;
+}
+
+.entry p{
+
+    margin:0;
+}
+
+.entry em{
+    font-style:italic;
+}
+
+
+/* ===========================
+   BULLETS
+=========================== */
+
+.bullet-list{
+
+    margin-top:6px;
+    margin-left:22px;
+}
+
+.bullet-list li{
+
+    margin-bottom:5px;
+
+    text-align:justify;
+}
+
+
+/* ===========================
+   PROJECT LINKS
+=========================== */
+
+.project-links{
+
+    margin-top:3px;
+    margin-bottom:8px;
+
+    font-style:italic;
+    color:#555;
+}
+
+.project-links span{
+
+    font-size:14px;
+}
+
+
+/* ===========================
+   CERTIFICATE
+=========================== */
+
+.certificate-description{
+
+    margin-top:5px;
+    margin-bottom:6px;
+
+    text-align:justify;
+}
+
+.certificate-links{
+
+    margin-top:5px;
+}
+
+.certificate-links div{
+
+    margin-bottom:3px;
+
+    font-size:14px;
+}
+
+
+/* ===========================
+   SKILLS
+=========================== */
+
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skill-category {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.skill-category-title {
+    font-weight: 600;
+    color: #111827;
+}
+
+.skill-category-skills {
+    color: #374151;
+}
+
+
+/* ===========================
+   LANGUAGES
+=========================== */
+
+.languages-container{
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:5px;
+
+    margin-top:4px;
+}
+
+
+/* ===========================
+   LINKS
+=========================== */
+
+a{
+
+    color:#111;
+    text-decoration:none;
+}
+
+a:hover{
+
+    text-decoration:underline;
+}
+
+
+/* ===========================
+   PRINT
+=========================== */
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    .cvPreview{
+
+        margin:0;
+        padding:22mm;
+
+        width:210mm;
+        min-height:297mm;
+
+        box-shadow:none;
+
+        page-break-after:always;
+    }
+}
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+    .cvPreview{
+
+        width:100%;
+
+        min-height:auto;
+
+        padding:24px;
+
+        margin:0;
+
+        box-shadow:none;
+    }
+
+    .cv-name{
+
+        font-size:34px;
+    }
+
+    .cv-contact{
+
+        flex-direction:column;
+        gap:3px;
+    }
+
+    .cv-contact span::after{
+
+        display:none;
+    }
+
+    .entry-header,
+    .entry-subheader{
+
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .entry-right{
+
+        text-align:left;
+        min-width:auto;
+    }
+
+    .section-title{
+
+        font-size:20px;
+    }
+
+    .entry h3{
+
+        font-size:18px;
+    }
+}
+
+
+/* ===========================
+   SMALL DETAILS
+=========================== */
+
+.entry:last-child{
+    margin-bottom:0;
+}
+
+.bullet-list:last-child{
+    margin-bottom:0;
+}
+
+.skills-container,
+.languages-container{
+    margin-bottom:8px;
+}
+
+*{
+    box-sizing:border-box;
 }

@@ -12,6 +12,13 @@ export default function App() {
       email: "", phone: "",
       linkedIn: "", github: "",
       portfolio: "",
+      links: [
+        {
+          id: crypto.randomUUID(),
+          title: "",
+          url: "",
+        },
+      ],
     }
   );
 
@@ -20,7 +27,9 @@ export default function App() {
       id: crypto.randomUUID(),
       schoolName: "",
       study: "",
-      date: "",
+      place: "",
+      startDate: "",
+      endDate: "",
     }
   ]);
 
@@ -54,14 +63,14 @@ export default function App() {
       <div className="mainContent">
         <div className={showPreview ? "hideMobile" : ""}>
           <LeftSidebarForm
-            generalInfo={generalInfo}               setGeneralInfo={setGeneralInfo}
-            educationList={educationList}           setEducationList={setEducationList}
-            workList={workList}                     setWorkList={setWorkList}
-            skillList={skillList}                   setSkillList={setSkillList}
-            projectList={projectList}               setProjectList={setProjectList}
-            languageList={languageList}             setLanguageList={setLanguageList}
-            achievementList={achievementList}       setAchievementList={setAchievementList}
-            certificateList={certificateList}       setCertificateList={setCertificateList}
+            generalInfo={generalInfo} setGeneralInfo={setGeneralInfo}
+            educationList={educationList} setEducationList={setEducationList}
+            workList={workList} setWorkList={setWorkList}
+            skillList={skillList} setSkillList={setSkillList}
+            projectList={projectList} setProjectList={setProjectList}
+            languageList={languageList} setLanguageList={setLanguageList}
+            achievementList={achievementList} setAchievementList={setAchievementList}
+            certificateList={certificateList} setCertificateList={setCertificateList}
           />
         </div>
 

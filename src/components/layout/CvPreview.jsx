@@ -2,115 +2,288 @@ import "../../styles/layout/CvPreview.css";
 
 export default function CvPreview(props) {
   return (
-    <section className='cvPreview'>
-      <h1>General Info</h1>
-      <p>Name: {props.generalInfo.firstName + " " + props.generalInfo.lastName}
-        Email: {props.generalInfo.email} Phone: {props.generalInfo.phone}
-        Linked In: {props.generalInfo.linkedIn}
-        Github: {props.generalInfo.github}
-        Portfolio: {props.generalInfo.portfolio}
-      </p>
+    <section className="cvPreview">
 
-      <h1 className={props.educationList.length === 0 ? "hidden" : "visible"}>Education</h1>
-      <ul>
-        {props.educationList.map((edu) => {
-          return (
-            <li key={edu.id}>
-              School: {edu.schoolName}
-              Study: {edu.study}
-              Date: {edu.date}
-            </li>
-          )
-        })}
-      </ul>
-      
-      <h1 className={props.workList.length === 0 ? "hidden" : "visible"}>Work Experience</h1>
-      <ul>
-        {props.workList.map((work) => {
-          return (
-            <li key={work.id}>
-              Company: {work.companyName}
-              Position: {work.position}
-              Responsibilities: {work.responsibilities}
-              Start Date: {work.startDate}
-              End Date: {work.endDate}
-            </li>
-          )
-        })}
-      </ul>
-      
-      <h1 className={props.skillList.length === 0 ? "hidden" : "visible"}>Skills</h1>
-      <ul>
-        {props.skillList.map((skill) => {
-          return (
-            <li key={skill.id}>{skill.skill}</li>
-          )
-        })}
-      </ul>
-      
-      <h1 className={props.projectList.length === 0 ? "hidden" : "visible"}>Projects</h1>
-      <ul>
-        {props.projectList.map((project) => {
-          return (
-            <li key={project.id}>
-              Title: {project.title}
-              Description: {project.description}
-              Start Date: {project.startDate}
-              End Date: {project.endDate}
-              <ul>
-                {project.links.map((link) => {
-                  return (
-                    <li key={link.id}>
-                      {link.title}: {link.url}
-                    </li>
-                  )
-                })}
-              </ul>
-            </li>
-          )
-        })}
-      </ul>
-      
-      <h1 className={props.achievementList.length === 0 ? "hidden" : "visible"}>Achievements</h1>
-      <ul>
-        {props.achievementList.map((achievement) => {
-          return (
-            <li key={achievement.id}>{achievement.achievement}</li>
-          )
-        })}
-      </ul>
+      {/* ================= HEADER ================= */}
 
-      <h1 className={props.certificateList.length === 0 ? "hidden" : "visible"}>Certifications</h1>
-      <ul>
-        {props.certificateList.map((certificate) => {
-          return (
-            <li key={certificate.id}>
-              Title: {certificate.title}
-              Description: {certificate.description}
-              Start Date: {certificate.startDate}
-              End Date: {certificate.endDate}
-              <ul>
-                {certificate.links.map((link) => {
-                  return (
-                    <li key={link.id}>
-                      {link.title}: {link.url}
-                    </li>
-                  )
-                })}
-              </ul>
-            </li>
-          )
-        })}
-      </ul>
+      <header className="cv-header">
+        <h1 className="cv-name">
+          {props.generalInfo.firstName} {props.generalInfo.lastName}
+        </h1>
 
-      <h1 className={props.languageList.length === 0 ? "hidden" : "visible"}>Languages Known</h1>
-      <ul>
-        {props.languageList.map((language) => {
-          return (
-            <li key={language.id}>{language.language}</li>
-          )
-        })}
-      </ul>
+        <div className="cv-contact">
+          {props.generalInfo.phone && (
+            <span>{props.generalInfo.phone}</span>
+          )}
+
+          {props.generalInfo.email && (
+            <span>{props.generalInfo.email}</span>
+          )}
+
+          {props.generalInfo.links.map((link) => (
+            <span key={link.id}>
+              {link.title}: {link.url}
+            </span>
+          ))}
+        </div>
+      </header>
+
+      {/* ================= EDUCATION ================= */}
+
+      {props.educationList.length > 0 && (
+        <>
+          <h2 className="section-title">Education</h2>
+
+          {props.educationList.map((edu) => (
+            <div className="entry" key={edu.id}>
+
+              <div className="entry-header">
+
+                <div className="entry-left">
+                  <h3>{edu.schoolName}</h3>
+                </div>
+
+                <div className="entry-right">
+                  <p>{edu.place}</p>
+                </div>
+
+              </div>
+
+              <div className="entry-subheader">
+
+                <div className="entry-left">
+                  <em>{edu.study}</em>
+                </div>
+
+                <div className="entry-right">
+                  <em>
+                    {edu.startDate}
+                    {edu.startDate && edu.endDate ? " - " : ""}
+                    {edu.endDate}
+                  </em>
+                </div>
+
+              </div>
+
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* ================= EXPERIENCE ================= */}
+
+      {props.workList.length > 0 && (
+        <>
+          <h2 className="section-title">Experience</h2>
+
+          {props.workList.map((work) => (
+            <div className="entry" key={work.id}>
+
+              <div className="entry-header">
+
+                <div className="entry-left">
+                  <h3>{work.position}</h3>
+                </div>
+
+                <div className="entry-right">
+                  <p>
+                    {work.startDate}
+                    {work.startDate && work.endDate ? " - " : ""}
+                    {work.endDate}
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="entry-subheader">
+
+                <div className="entry-left">
+                  <em>{work.companyName}</em>
+                </div>
+
+              </div>
+
+              {work.responsibilities && (
+                <ul className="bullet-list">
+
+                  {work.responsibilities
+                    .split("\n")
+                    .filter((line) => line.trim() !== "")
+                    .map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+
+                </ul>
+              )}
+
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* ================= PROJECTS ================= */}
+
+      {props.projectList.length > 0 && (
+        <>
+          <h2 className="section-title">Projects</h2>
+
+          {props.projectList.map((project) => (
+            <div className="entry" key={project.id}>
+
+              <div className="entry-header">
+
+                <div className="entry-left">
+                  <h3>{project.title}</h3>
+                </div>
+
+                <div className="entry-right">
+                  <p>
+                    {project.startDate}
+                    {project.startDate && project.endDate ? " - " : ""}
+                    {project.endDate}
+                  </p>
+                </div>
+
+              </div>
+
+              {project.links.length > 0 && (
+                <div className="project-links">
+
+                  {project.links.map((link, index) => (
+                    <span key={link.id}>
+                      {index !== 0 && " | "}
+                      {link.title}
+                    </span>
+                  ))}
+
+                </div>
+              )}
+
+              {project.description && (
+                <ul className="bullet-list">
+                  {project.description
+                    .split("\n")
+                    .filter((line) => line.trim() !== "")
+                    .map((line, index) => (
+                      <li key={index}>{line}</li>
+                    ))}
+                </ul>
+              )}
+
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* ================= TECHNICAL SKILLS ================= */}
+
+      {props.skillList.length > 0 && (
+        <>
+          <h2 className="section-title">Technical Skills</h2>
+
+          <div className="skills-container">
+            {props.skillList.map((category) => (
+              <div className="skill-category" key={category.id}>
+                <span className="skill-category-title">
+                  {category.category}:
+                </span>
+
+                <span className="skill-category-skills">
+                  {category.skills.map((skill) => skill.name).join(", ")}
+                </span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* ================= ACHIEVEMENTS ================= */}
+
+      {props.achievementList.length > 0 && (
+        <>
+          <h2 className="section-title">Achievements</h2>
+
+          <ul className="bullet-list">
+
+            {props.achievementList.map((achievement) => (
+              <li key={achievement.id}>
+                {achievement.achievement}
+              </li>
+            ))}
+
+          </ul>
+        </>
+      )}
+
+      {/* ================= CERTIFICATES ================= */}
+
+      {props.certificateList.length > 0 && (
+        <>
+          <h2 className="section-title">Certifications</h2>
+
+          {props.certificateList.map((certificate) => (
+            <div className="entry" key={certificate.id}>
+
+              <div className="entry-header">
+
+                <div className="entry-left">
+                  <h3>{certificate.title}</h3>
+                </div>
+
+                <div className="entry-right">
+                  <p>
+                    {certificate.startDate}
+                    {certificate.startDate && certificate.endDate
+                      ? " - "
+                      : ""}
+                    {certificate.endDate}
+                  </p>
+                </div>
+
+              </div>
+
+              {certificate.description && (
+                <p className="certificate-description">
+                  {certificate.description}
+                </p>
+              )}
+
+              {certificate.links.length > 0 && (
+                <div className="certificate-links">
+
+                  {certificate.links.map((link) => (
+                    <div key={link.id}>
+                      <strong>{link.title}</strong>: {link.url}
+                    </div>
+                  ))}
+
+                </div>
+              )}
+
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* ================= LANGUAGES ================= */}
+
+      {props.languageList.length > 0 && (
+        <>
+          <h2 className="section-title">Languages</h2>
+
+          <div className="languages-container">
+
+            {props.languageList.map((language, index) => (
+              <span key={language.id}>
+                {language.language}
+                {index !== props.languageList.length - 1 ? " • " : ""}
+              </span>
+            ))}
+
+          </div>
+        </>
+      )}
+
     </section>
-  )
+  );
 }

@@ -22,15 +22,31 @@ function EducationalInfo({ entry, updateEntry, removeEntry }) {
             </label>
 
             <label>
-                Date:
+                Place:
                 <input
-                    type="date"
-                    value={entry.date}
-                    onChange={(e) => updateEntry(entry.id, "date", e.target.value)}
+                    type="text"
+                    value={entry.place}
+                    onChange={(e) => updateEntry(entry.id, "place", e.target.value)}
                 />
             </label>
 
+            <label>
+                Start Date:
+                <input
+                    type="date"
+                    value={entry.startDate}
+                    onChange={(e) => updateEntry(entry.id, "startDate", e.target.value)}
+                />
+            </label>
 
+             <label>
+                End Date:
+                <input
+                    type="date"
+                    value={entry.endDate}
+                    onChange={(e) => updateEntry(entry.id, "endDate", e.target.value)}
+                />
+            </label>
             <button onClick={() => removeEntry(entry.id)}>
                 Remove
             </button>
