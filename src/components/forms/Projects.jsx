@@ -1,80 +1,99 @@
-import "../../styles/forms/Projects.css";
+import FormCard from "../reusables/FormCard.jsx";
+import SectionTitle from "../reusables/SectionTitle.jsx";
+import FormGroup from "../reusables/FormGroup.jsx";
+import InputRow from "../reusables/InputRow.jsx";
+import DateRow from "../reusables/DateRow.jsx";
+import LinkCard from "../reusables/LinkCard.jsx";
+import DynamicList from "../reusables/DynamicList.jsx";
+import ActionButtons from "../reusables/ActionButtons.jsx";
 
-export default function Project({ projectList, setProjectList }) {
+export default function Project({
+    projectList,
+    setProjectList,
+}) {
+
     function addProject() {
-        setProjectList([...projectList, {
-                id: crypto.randomUUID(),
-                title: "",
-                description: "",
-                startDate: "",
-                endDate: "",
-                links: [{id: crypto.randomUUID(), title: "", url: "",}],
-            }]);
+        setProjectList([...projectList,
+        {
+            id: crypto.randomUUID(),
+            title: "",
+            description: "",
+            startDate: "",
+            endDate: "",
+            links: [
+                {
+                    id: crypto.randomUUID(),
+                    title: "",
+                    url: "",
+                },
+            ],
+        },
+        ]);
     }
 
     function updateEntry(id, field, value) {
-        setProjectList(projectList.map((project) => project.id === id ? { ...project, [field]: value } : project));
-    }
-
-    function addLink(projectId) {
-        setProjectList(
-            projectList.map((project) => {
-                if (project.id !== projectId) return project;
-
-                return {
-                    ...project,
-                    links: [
-                        ...project.links,
-                        {
-                            id: crypto.randomUUID(),
-                            title: "",
-                            url: "",
-                        },
-                    ],
-                };
-            })
-        );
-    }
-
-    function updateLink(projectId, linkId, field, value) {
-        setProjectList(projectList.map((project) => {
-                if (project.id !== projectId) return project;
-
-                return {
-                    ...project, links: project.links.map((link) =>
-                        link.id === linkId ? {...link, [field]: value} : link
-                    )
-                };
-            })
-        );
-    }
-
-    function removeLink(projectId, linkId) {
-        setProjectList(
-            projectList.map((project) => {
-                if (project.id !== projectId) return project;
-
-                return {
-                    ...project, links: project.links.filter((link) => link.id !== linkId)
-                };
-            })
-        );
+        setProjectList(projectList.map((project) =>
+            project.id === id ? { ...project, [field]: value } : project
+        ));
     }
 
     function removeEntry(id) {
         setProjectList(projectList.filter((project) => project.id !== id));
     }
 
+    function addLink(projectId) {
+        setProjectList(projectList.map((project) =>
+            project.id === projectId ? {
+                ...project,
+                links: [
+                    ...project.links,
+                    {
+                        id: crypto.randomUUID(),
+                        title: "",
+                        url: "",
+                    },
+                ],
+            }
+                : project
+        ));
+    }
+
+    function updateLink(projectId, linkId, field, value) {
+        setProjectList(projectList.map((project) =>
+            project.id === projectId ? {
+                ...project,
+                links: project.links.map((link) =>
+                    link.id === linkId ? { ...link, [field]: value } : link
+                ),
+            }
+                : project
+        ));
+    }
+
+    function removeLink(projectId, linkId) {
+        setProjectList(projectList.map((project) =>
+            project.id === projectId ? {
+                ...project,
+                links: project.links.filter(
+                    (link) => link.id !== linkId
+                ),
+            }
+                : project
+        ));
+    }
+
     return (
-        <div>
-            <h1>Projects</h1>
+        <FormCard title="Projects">
 
-            <button onClick={addProject}>
-                Add Project
-            </button>
+            <SectionTitle
+                title="Projects"
+                subtitle="Highlight your best work."
+            />
 
-            <ul>
-                {projectList.map((project) => (
+            <DynamicList
+                items={projectList}
+                emptyMessage="No projects added."
+                renderItem={(project) => (
                     <ProjectInfo
                         key={project.id}
                         entry={project}
@@ -84,36 +103,76 @@ export default function Project({ projectList, setProjectList }) {
                         removeLink={removeLink}
                         removeEntry={removeEntry}
                     />
-                ))}
-            </ul>
-        </div>
+                )}
+            />
+
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Project",
+                    onClick: addProject,
+                }}
+            />
+
+        </FormCard>
     );
 }
 
-function ProjectInfo({
-    entry,
-    updateEntry,
-    addLink,
-    updateLink,
-    removeLink,
-    removeEntry,
-}) {
+function ProjectInfo({ entry, updateEntry, addLink, updateLink, removeLink, removeEntry, }) {
+
     return (
-        <li>
-            <label>
-                Title:
+        <div className="entry-card">
+
+            <FormGroup label="Project Title">
                 <input
                     type="text"
                     value={entry.title}
                     onChange={(e) =>
-                        updateEntry(entry.id, "title", e.target.value)
+                        updateEntry(
+                            entry.id,
+                            "title",
+                            e.target.value
+                        )
                     }
                 />
-            </label>
+            </FormGroup>
 
-            <label>
-                Description:
+            <DateRow>
+
+                <FormGroup label="Start Date">
+                    <input
+                        type="date"
+                        value={entry.startDate}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "startDate",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+                <FormGroup label="End Date">
+                    <input
+                        type="date"
+                        value={entry.endDate}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "endDate",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+            </DateRow>
+
+            <FormGroup label="Description">
                 <textarea
+                    rows={5}
+                    placeholder="Write one point per line..."
                     value={entry.description}
                     onChange={(e) =>
                         updateEntry(
@@ -123,105 +182,84 @@ function ProjectInfo({
                         )
                     }
                 />
-            </label>
+            </FormGroup>
 
-            <label>
-                Start Date:
-                <input
-                    type="date"
-                    value={entry.startDate}
-                    onChange={(e) =>
-                        updateEntry(
-                            entry.id,
-                            "startDate",
-                            e.target.value
-                        )
-                    }
-                />
-            </label>
+            <SectionTitle
+                title="Project Links"
+            />
 
-            <label>
-                End Date:
-                <input
-                    type="date"
-                    value={entry.endDate}
-                    onChange={(e) =>
-                        updateEntry(
-                            entry.id,
-                            "endDate",
-                            e.target.value
-                        )
-                    }
-                />
-            </label>
+            <DynamicList
+                items={entry.links}
+                emptyMessage="No links added."
+                renderItem={(link) => (
+                    <LinkCard key={link.id}>
 
-            <h3>Project Links</h3>
+                        <InputRow>
 
-            {entry.links.map((link) => (
-                <div
-                    key={link.id}
-                    style={{
-                        border: "1px solid #ccc",
-                        padding: "10px",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <label>
-                        Link Title:
-                        <input
-                            type="text"
-                            value={link.title}
-                            onChange={(e) =>
-                                updateLink(
-                                    entry.id,
-                                    link.id,
-                                    "title",
-                                    e.target.value
-                                )
-                            }
+                            <FormGroup label="Link Title">
+                                <input
+                                    type="text"
+                                    value={link.title}
+                                    onChange={(e) =>
+                                        updateLink(
+                                            entry.id,
+                                            link.id,
+                                            "title",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </FormGroup>
+
+                            <FormGroup label="URL">
+                                <input
+                                    type="url"
+                                    value={link.url}
+                                    onChange={(e) =>
+                                        updateLink(
+                                            entry.id,
+                                            link.id,
+                                            "url",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </FormGroup>
+
+                        </InputRow>
+
+                        <ActionButtons
+                            secondary={{
+                                text: "Remove Link",
+                                onClick: () =>
+                                    removeLink(
+                                        entry.id,
+                                        link.id
+                                    ),
+                            }}
                         />
-                    </label>
 
-                    <label>
-                        URL:
-                        <input
-                            type="url"
-                            value={link.url}
-                            onChange={(e) =>
-                                updateLink(
-                                    entry.id,
-                                    link.id,
-                                    "url",
-                                    e.target.value
-                                )
-                            }
-                        />
-                    </label>
+                    </LinkCard>
+                )}
+            />
 
-                    <button
-                        type="button"
-                        onClick={() =>
-                            removeLink(entry.id, link.id)
-                        }
-                    >
-                        Remove Link
-                    </button>
-                </div>
-            ))}
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Link",
+                    onClick: () =>
+                        addLink(entry.id),
+                }}
+            />
 
-            <button
-                type="button"
-                onClick={() => addLink(entry.id)}
-            >
-                Add Link
-            </button>
+            <ActionButtons
+                secondary={{
+                    text: "Remove Project",
+                    onClick: () =>
+                        removeEntry(entry.id),
+                }}
+            />
 
-            <button
-                type="button"
-                onClick={() => removeEntry(entry.id)}
-            >
-                Remove Project
-            </button>
-        </li>
+        </div>
     );
 }

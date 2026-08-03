@@ -1,6 +1,10 @@
-import "../../styles/forms/Skill.css";
+import FormCard from "../reusables/FormCard.jsx";
+import SectionTitle from "../reusables/SectionTitle.jsx";
+import FormGroup from "../reusables/FormGroup.jsx";
+import DynamicList from "../reusables/DynamicList.jsx";
+import ActionButtons from "../reusables/ActionButtons.jsx";
 
-export default function Skill({ skillList, setSkillList }) {
+export default function Skill({ skillList, setSkillList, }) {
     function addCategory() {
         setSkillList([...skillList,
         {
@@ -12,68 +16,67 @@ export default function Skill({ skillList, setSkillList }) {
     }
 
     function updateCategory(id, value) {
-        setSkillList(skillList.map((entry) =>
-            entry.id === id ? { ...entry, category: value } : entry
+        setSkillList(skillList.map((category) =>
+            category.id === id ? { ...category, category: value } : category
         ));
     }
 
     function removeCategory(id) {
-        setSkillList(skillList.filter((entry) => entry.id !== id));
+        setSkillList(skillList.filter((category) => category.id !== id));
     }
 
     function addSkill(categoryId) {
-        setSkillList(skillList.map((entry) =>
-            entry.id === categoryId ? {
-                ...entry, skills: [...entry.skills,
+        setSkillList(skillList.map((category) =>
+            category.id === categoryId ? {
+                ...category,
+                skills: [...category.skills,
                 {
                     id: crypto.randomUUID(),
                     name: "",
                 },
                 ],
-            } : entry
+            }
+                : category
         ));
     }
 
     function updateSkill(categoryId, skillId, value) {
-        setSkillList(
-            skillList.map((entry) =>
-                entry.id === categoryId ? {
-                    ...entry,
-                    skills: entry.skills.map((skill) =>
-                        skill.id === skillId
-                            ? { ...skill, name: value }
-                            : skill
-                    ),
-                }
-                    : entry
-            )
-        );
+        setSkillList(skillList.map((category) =>
+            category.id === categoryId ? {
+                ...category,
+                skills: category.skills.map((skill) =>
+                    skill.id === skillId ? { ...skill, name: value } : skill
+                ),
+            }
+                : category
+        ));
     }
 
     function removeSkill(categoryId, skillId) {
-        setSkillList(skillList.map((entry) =>
-            entry.id === categoryId ? {
-                ...entry,
-                skills: entry.skills.filter(
+        setSkillList(skillList.map((category) =>
+            category.id === categoryId ? {
+                ...category,
+                skills: category.skills.filter(
                     (skill) => skill.id !== skillId
                 ),
             }
-                : entry
-        )
-        );
+                : category
+        ));
     }
 
     return (
-        <div>
-            <h1>Skills</h1>
+        <FormCard title="Skills">
 
-            <button onClick={addCategory}>
-                Add Category
-            </button>
+            <SectionTitle
+                title="Technical Skills"
+                subtitle="Organize your skills into categories."
+            />
 
-            <ul>
-                {skillList.map((category) => (
-                    <SkillInfo
+            <DynamicList
+                items={skillList}
+                emptyMessage="No skill categories added."
+                renderItem={(category) => (
+                    <SkillCategory
                         key={category.id}
                         entry={category}
                         updateCategory={updateCategory}
@@ -82,45 +85,50 @@ export default function Skill({ skillList, setSkillList }) {
                         updateSkill={updateSkill}
                         removeSkill={removeSkill}
                     />
-                ))}
-            </ul>
-        </div>
+                )}
+            />
+
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Category",
+                    onClick: addCategory,
+                }}
+            />
+
+        </FormCard>
     );
 }
 
-function SkillInfo({
-    entry,
-    updateCategory,
-    removeCategory,
-    addSkill,
-    updateSkill,
-    removeSkill,
-}) {
+function SkillCategory({ entry, updateCategory, removeCategory, addSkill, updateSkill, removeSkill, }) {
     return (
-        <li className="skillCategory">
-            <input
-                type="text"
-                placeholder="Category (e.g. Languages)"
-                value={entry.category}
-                onChange={(e) =>
-                    updateCategory(entry.id, e.target.value)
-                }
-            />
+        <div className="entry-card">
 
-            <button onClick={() => removeCategory(entry.id)}>
-                Remove Category
-            </button>
+            <FormGroup label="Category Name">
+                <input
+                    type="text"
+                    placeholder="Programming Languages"
+                    value={entry.category}
+                    onChange={(e) =>
+                        updateCategory(
+                            entry.id,
+                            e.target.value
+                        )
+                    }
+                />
+            </FormGroup>
 
-            <button onClick={() => addSkill(entry.id)}>
-                Add Skill
-            </button>
-
-            <ul>
-                {entry.skills.map((skill) => (
-                    <li key={skill.id}>
+            <DynamicList
+                items={entry.skills}
+                emptyMessage="No skills added."
+                renderItem={(skill) => (
+                    <div
+                        className="skill-item"
+                        key={skill.id}
+                    >
                         <input
                             type="text"
-                            placeholder="Skill"
+                            placeholder="React"
                             value={skill.name}
                             onChange={(e) =>
                                 updateSkill(
@@ -132,15 +140,38 @@ function SkillInfo({
                         />
 
                         <button
+                            type="button"
+                            className="btn btn-secondary"
                             onClick={() =>
-                                removeSkill(entry.id, skill.id)
+                                removeSkill(
+                                    entry.id,
+                                    skill.id
+                                )
                             }
                         >
-                            Remove Skill
+                            Remove
                         </button>
-                    </li>
-                ))}
-            </ul>
-        </li>
+                    </div>
+                )}
+            />
+
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Skill",
+                    onClick: () =>
+                        addSkill(entry.id),
+                }}
+            />
+
+            <ActionButtons
+                secondary={{
+                    text: "Remove Category",
+                    onClick: () =>
+                        removeCategory(entry.id),
+                }}
+            />
+
+        </div>
     );
 }

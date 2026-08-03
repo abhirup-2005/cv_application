@@ -1,48 +1,89 @@
-import "../../styles/forms/Achievement.css";
+import FormCard from "../reusables/FormCard.jsx";
+import SectionTitle from "../reusables/SectionTitle.jsx";
+import FormGroup from "../reusables/FormGroup.jsx";
+import DynamicList from "../reusables/DynamicList.jsx";
+import ActionButtons from "../reusables/ActionButtons.jsx";
 
-export default function Achievement({ achievementList, setAchievementList }) {
+export default function Achievement({
+    achievementList,
+    setAchievementList,
+}) {
     function addAchievement() {
-        setAchievementList([...achievementList, { id: crypto.randomUUID(), skill: "", }]);
+        setAchievementList([ ...achievementList, {
+                id: crypto.randomUUID(),
+                achievement: "",
+            },]);
     }
 
-    function updateEntry(id, field, value) {
-        setAchievementList(achievementList.map((entry) => entry.id === id ? { ...entry, [field]: value } : entry));
+    function updateEntry(id, value) {
+        setAchievementList( achievementList.map((achievement) =>
+                achievement.id === id ? { ...achievement, achievement: value, } : achievement
+            ));
     }
 
     function removeEntry(id) {
-        setAchievementList(achievementList.filter((entry) => entry.id !== id));
+        setAchievementList( achievementList.filter( (achievement) => achievement.id !== id ));
     }
 
     return (
-        <div>
-            <h1>Achievements</h1>
-            <button onClick={addAchievement}>Add</button>
-            <ul>
-                {achievementList.map((achievement) => (
+        <FormCard title="Achievements">
+
+            <SectionTitle
+                title="Achievements & Awards"
+                subtitle="Mention notable accomplishments."
+            />
+
+            <DynamicList
+                items={achievementList}
+                emptyMessage="No achievements added."
+                renderItem={(achievement) => (
                     <AchievementInfo
                         key={achievement.id}
                         entry={achievement}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
                     />
-                ))}
-            </ul>
-        </div>
-    )
+                )}
+            />
+
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Achievement",
+                    onClick: addAchievement,
+                }}
+            />
+
+        </FormCard>
+    );
 }
 
-function AchievementInfo({ entry, updateEntry, removeEntry}) {
+function AchievementInfo({ entry, updateEntry, removeEntry, }) {
     return (
-        <li>
-            <textarea
-                type="text"
-                value={entry.achievement}
-                onChange={(e) => updateEntry(entry.id, "achievement", e.target.value)}
-            ></textarea>
-            <button onClick={() => removeEntry(entry.id)}>
-                Remove
-            </button>
+        <div className="entry-card">
 
-        </li>
+            <FormGroup label="Achievement">
+                <textarea
+                    rows={4}
+                    placeholder="Describe your achievement..."
+                    value={entry.achievement}
+                    onChange={(e) =>
+                        updateEntry(
+                            entry.id,
+                            e.target.value
+                        )
+                    }
+                />
+            </FormGroup>
+
+            <ActionButtons
+                secondary={{
+                    text: "Remove Achievement",
+                    onClick: () =>
+                        removeEntry(entry.id),
+                }}
+            />
+
+        </div>
     );
 }

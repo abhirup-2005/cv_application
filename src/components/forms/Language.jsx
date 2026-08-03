@@ -1,48 +1,97 @@
-import "../../styles/forms/Language.css";
+import FormCard from "../reusables/FormCard.jsx";
+import SectionTitle from "../reusables/SectionTitle.jsx";
+import FormGroup from "../reusables/FormGroup.jsx";
+import DynamicList from "../reusables/DynamicList.jsx";
+import ActionButtons from "../reusables/ActionButtons.jsx";
 
-export default function Language({ languageList, setLanguageList }) {
+export default function Language({ languageList, setLanguageList, }) {
+
     function addLanguage() {
-        setLanguageList([...languageList, { id: crypto.randomUUID(), skill: "", }]);
+        setLanguageList([...languageList,
+        {
+            id: crypto.randomUUID(),
+            language: "",
+        },
+        ]);
     }
 
-    function updateEntry(id, field, value) {
-        setLanguageList(languageList.map((entry) => entry.id === id ? { ...entry, [field]: value } : entry));
+    function updateEntry(id, value) {
+        setLanguageList(languageList.map((language) =>
+            language.id === id ? {
+                ...language,
+                language: value,
+            }
+                : language
+        )
+        );
     }
 
     function removeEntry(id) {
-        setLanguageList(languageList.filter((entry) => entry.id !== id));
+        setLanguageList(languageList.filter(
+            (language) => language.id !== id
+        )
+        );
     }
 
     return (
-        <div>
-            <h1>Language</h1>
-            <button onClick={addLanguage}>Add</button>
-            <ul>
-                {languageList.map((language) => (
+        <FormCard title="Languages">
+
+            <SectionTitle
+                title="Languages"
+                subtitle="Mention languages you know."
+            />
+
+            <DynamicList
+                items={languageList}
+                emptyMessage="No languages added."
+                renderItem={(language) => (
                     <LanguageInfo
                         key={language.id}
                         entry={language}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
                     />
-                ))}
-            </ul>
-        </div>
-    )
+                )}
+            />
+
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Language",
+                    onClick: addLanguage,
+                }}
+            />
+
+        </FormCard>
+    );
 }
 
-function LanguageInfo({ entry, updateEntry, removeEntry}) {
+function LanguageInfo({ entry, updateEntry, removeEntry, }) {
     return (
-        <li>
-            <input
-                type="text"
-                value={entry.language}
-                onChange={(e) => updateEntry(entry.id, "language", e.target.value)}
-            />
-            <button onClick={() => removeEntry(entry.id)}>
-                Remove
-            </button>
+        <div className="entry-card">
 
-        </li>
+            <FormGroup label="Language">
+                <input
+                    type="text"
+                    placeholder="English"
+                    value={entry.language}
+                    onChange={(e) =>
+                        updateEntry(
+                            entry.id,
+                            e.target.value
+                        )
+                    }
+                />
+            </FormGroup>
+
+            <ActionButtons
+                secondary={{
+                    text: "Remove Language",
+                    onClick: () =>
+                        removeEntry(entry.id),
+                }}
+            />
+
+        </div>
     );
 }

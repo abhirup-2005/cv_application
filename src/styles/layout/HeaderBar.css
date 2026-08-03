@@ -1,0 +1,122 @@
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 24px;
+
+    background: var(--surface-color);
+
+    border-bottom: 1px solid var(--border-color);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* ========================================
+   BRANDING
+======================================== */
+
+.branding {
+
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    color: var(--primary-color);
+
+    letter-spacing: .5px;
+}
+
+/* ========================================
+   BUTTON GROUP
+======================================== */
+
+.headerButtons {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.headerButtons button {
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    padding: 10px 18px;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+/* ========================================
+   PDF BUTTON
+======================================== */
+
+.pdfDownload {
+
+    background: var(--primary-color);
+    color: white;
+}
+
+.pdfDownload:hover {
+
+    background: var(--primary-hover);
+}
+
+/* ========================================
+   PREVIEW BUTTON
+======================================== */
+
+.previewCV {
+
+    background: var(--surface-light);
+    color: var(--text-color);
+
+    border: 1px solid var(--border-color);
+}
+
+.previewCV:hover {
+
+    border-color: var(--primary-color);
+
+    background: rgba(139, 92, 246, .08);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+
+        padding: 14px 16px;
+    }
+
+    .branding {
+
+        font-size: 1.25rem;
+    }
+
+    .headerButtons {
+
+        gap: 8px;
+    }
+
+    .headerButtons button {
+
+        padding: 8px 14px;
+
+        font-size: .85rem;
+    }
+}

@@ -1,34 +1,88 @@
+/* ========================================
+   APP LAYOUT
+======================================== */
+
 .mainContent {
+
     display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 20px;
+    grid-template-columns: 1fr 2fr;
+
+    gap: 24px;
+
+    padding: 24px;
+
+    align-items: start;
 }
 
-.header {
+/* ========================================
+   SIDEBAR
+======================================== */
+
+.mainContent > :first-child {
+
+    position: sticky;
+    top: 88px;
+
+    max-height: calc(100vh - 112px);
+
+    overflow-y: auto;
+}
+
+/* ========================================
+   PREVIEW
+======================================== */
+
+.mainContent > :last-child {
+
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
 }
 
-/* Hidden on desktop */
+/* ========================================
+   MOBILE PREVIEW
+======================================== */
+
 .previewCV {
     display: none;
 }
 
-/* Desktop */
 .hideMobile {
     display: block;
 }
 
-/* Mobile */
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1024px) {
+
+    .mainContent {
+
+        grid-template-columns: 360px 1fr;
+
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
 @media (max-width: 768px) {
 
     .mainContent {
+
         grid-template-columns: 1fr;
+
+        padding: 16px;
+    }
+
+    .mainContent > :first-child {
+
+        position: static;
+        max-height: none;
+        overflow: visible;
     }
 
     .previewCV {
-        display: block;
+        display: inline-flex;
     }
 
     .hideMobile {

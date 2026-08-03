@@ -1,80 +1,98 @@
-import "../../styles/forms/Certification.css";
+import FormCard from "../reusables/FormCard.jsx";
+import SectionTitle from "../reusables/SectionTitle.jsx";
+import FormGroup from "../reusables/FormGroup.jsx";
+import InputRow from "../reusables/InputRow.jsx";
+import DateRow from "../reusables/DateRow.jsx";
+import LinkCard from "../reusables/LinkCard.jsx";
+import DynamicList from "../reusables/DynamicList.jsx";
+import ActionButtons from "../reusables/ActionButtons.jsx";
 
-export default function Certificate({ certificateList, setCertificateList }) {
+export default function Certificate({ certificateList, setCertificateList, }) {
+
     function addCertificate() {
-        setCertificateList([...certificateList, {
-                id: crypto.randomUUID(),
-                title: "",
-                description: "",
-                startDate: "",
-                endDate: "",
-                links: [{id: crypto.randomUUID(), title: "", url: "",}],
-            }]);
+        setCertificateList([...certificateList,
+        {
+            id: crypto.randomUUID(),
+            title: "",
+            description: "",
+            startDate: "",
+            endDate: "",
+            links: [
+                {
+                    id: crypto.randomUUID(),
+                    title: "",
+                    url: "",
+                },
+            ],
+        },
+        ]);
     }
 
     function updateEntry(id, field, value) {
-        setCertificateList(certificateList.map((certificate) => certificate.id === id ? { ...certificate, [field]: value } : certificate));
-    }
-
-    function addLink(certificateId) {
-        setCertificateList(
-            certificateList.map((certificate) => {
-                if (certificate.id !== certificateId) return certificate;
-
-                return {
-                    ...certificate,
-                    links: [
-                        ...certificate.links,
-                        {
-                            id: crypto.randomUUID(),
-                            title: "",
-                            url: "",
-                        },
-                    ],
-                };
-            })
-        );
-    }
-
-    function updateLink(certificateId, linkId, field, value) {
-        setCertificateList(certificateList.map((certificate) => {
-                if (certificate.id !== certificateId) return certificate;
-
-                return {
-                    ...certificate, links: certificate.links.map((link) =>
-                        link.id === linkId ? {...link, [field]: value} : link
-                    )
-                };
-            })
-        );
-    }
-
-    function removeLink(certificateId, linkId) {
-        setCertificateList(
-            certificateList.map((certificate) => {
-                if (certificate.id !== certificateId) return certificate;
-
-                return {
-                    ...certificate, links: certificate.links.filter((link) => link.id !== linkId)
-                };
-            })
-        );
+        setCertificateList(certificateList.map((certificate) =>
+            certificate.id === id ? { ...certificate, [field]: value } : certificate
+        ));
     }
 
     function removeEntry(id) {
         setCertificateList(certificateList.filter((certificate) => certificate.id !== id));
     }
 
+    function addLink(certificateId) {
+        setCertificateList(certificateList.map((certificate) =>
+            certificate.id === certificateId ? {
+                ...certificate,
+                links: [
+                    ...certificate.links,
+                    {
+                        id: crypto.randomUUID(),
+                        title: "",
+                        url: "",
+                    },
+                ],
+            }
+                : certificate
+        ));
+    }
+
+    function updateLink(certificateId, linkId, field, value) {
+        setCertificateList(certificateList.map((certificate) =>
+            certificate.id === certificateId ? {
+                ...certificate,
+                links: certificate.links.map((link) =>
+                    link.id === linkId
+                        ? { ...link, [field]: value }
+                        : link
+                ),
+            }
+                : certificate
+        ));
+    }
+
+    function removeLink(certificateId, linkId) {
+        setCertificateList(certificateList.map((certificate) =>
+            certificate.id === certificateId ? {
+                ...certificate,
+                links: certificate.links.filter(
+                    (link) => link.id !== linkId
+                ),
+            }
+                : certificate
+        ));
+    }
+
     return (
-        <div>
-            <h1>Certifications</h1>
+        <FormCard title="Certifications">
 
-            <button onClick={addCertificate}>
-                Add Certificate
-            </button>
+            <SectionTitle
+                title="Certificates"
+                subtitle="Add certificates, licenses and courses."
+            />
 
-            <ul>
-                {certificateList.map((certificate) => (
+            <DynamicList
+                items={certificateList}
+                emptyMessage="No certificates added."
+                renderItem={(certificate) => (
                     <CertificateInfo
                         key={certificate.id}
                         entry={certificate}
@@ -84,36 +102,74 @@ export default function Certificate({ certificateList, setCertificateList }) {
                         removeLink={removeLink}
                         removeEntry={removeEntry}
                     />
-                ))}
-            </ul>
-        </div>
+                )}
+            />
+
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Certificate",
+                    onClick: addCertificate,
+                }}
+            />
+
+        </FormCard>
     );
 }
 
-function CertificateInfo({
-    entry,
-    updateEntry,
-    addLink,
-    updateLink,
-    removeLink,
-    removeEntry,
-}) {
+function CertificateInfo({ entry, updateEntry, addLink, updateLink, removeLink, removeEntry, }) {
     return (
-        <li>
-            <label>
-                Title:
+        <div className="entry-card">
+
+            <FormGroup label="Certificate Title">
                 <input
                     type="text"
                     value={entry.title}
                     onChange={(e) =>
-                        updateEntry(entry.id, "title", e.target.value)
+                        updateEntry(
+                            entry.id,
+                            "title",
+                            e.target.value
+                        )
                     }
                 />
-            </label>
+            </FormGroup>
 
-            <label>
-                Description:
+            <DateRow>
+
+                <FormGroup label="Issue Date">
+                    <input
+                        type="date"
+                        value={entry.startDate}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "startDate",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+                <FormGroup label="Expiry Date">
+                    <input
+                        type="date"
+                        value={entry.endDate}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "endDate",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+            </DateRow>
+
+            <FormGroup label="Description">
                 <textarea
+                    rows={4}
                     value={entry.description}
                     onChange={(e) =>
                         updateEntry(
@@ -123,105 +179,82 @@ function CertificateInfo({
                         )
                     }
                 />
-            </label>
+            </FormGroup>
 
-            <label>
-                Start Date:
-                <input
-                    type="date"
-                    value={entry.startDate}
-                    onChange={(e) =>
-                        updateEntry(
-                            entry.id,
-                            "startDate",
-                            e.target.value
-                        )
-                    }
-                />
-            </label>
+            <SectionTitle title="Certificate Links" />
 
-            <label>
-                End Date:
-                <input
-                    type="date"
-                    value={entry.endDate}
-                    onChange={(e) =>
-                        updateEntry(
-                            entry.id,
-                            "endDate",
-                            e.target.value
-                        )
-                    }
-                />
-            </label>
+            <DynamicList
+                items={entry.links}
+                emptyMessage="No links added."
+                renderItem={(link) => (
+                    <LinkCard key={link.id}>
 
-            <h3>Certificate Links</h3>
+                        <InputRow>
 
-            {entry.links.map((link) => (
-                <div
-                    key={link.id}
-                    style={{
-                        border: "1px solid #ccc",
-                        padding: "10px",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <label>
-                        Link Title:
-                        <input
-                            type="text"
-                            value={link.title}
-                            onChange={(e) =>
-                                updateLink(
-                                    entry.id,
-                                    link.id,
-                                    "title",
-                                    e.target.value
-                                )
-                            }
+                            <FormGroup label="Link Title">
+                                <input
+                                    type="text"
+                                    value={link.title}
+                                    onChange={(e) =>
+                                        updateLink(
+                                            entry.id,
+                                            link.id,
+                                            "title",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </FormGroup>
+
+                            <FormGroup label="URL">
+                                <input
+                                    type="url"
+                                    value={link.url}
+                                    onChange={(e) =>
+                                        updateLink(
+                                            entry.id,
+                                            link.id,
+                                            "url",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </FormGroup>
+
+                        </InputRow>
+
+                        <ActionButtons
+                            secondary={{
+                                text: "Remove Link",
+                                onClick: () =>
+                                    removeLink(
+                                        entry.id,
+                                        link.id
+                                    ),
+                            }}
                         />
-                    </label>
 
-                    <label>
-                        URL:
-                        <input
-                            type="url"
-                            value={link.url}
-                            onChange={(e) =>
-                                updateLink(
-                                    entry.id,
-                                    link.id,
-                                    "url",
-                                    e.target.value
-                                )
-                            }
-                        />
-                    </label>
+                    </LinkCard>
+                )}
+            />
 
-                    <button
-                        type="button"
-                        onClick={() =>
-                            removeLink(entry.id, link.id)
-                        }
-                    >
-                        Remove Link
-                    </button>
-                </div>
-            ))}
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Link",
+                    onClick: () =>
+                        addLink(entry.id),
+                }}
+            />
 
-            <button
-                type="button"
-                onClick={() => addLink(entry.id)}
-            >
-                Add Link
-            </button>
+            <ActionButtons
+                secondary={{
+                    text: "Remove Certificate",
+                    onClick: () =>
+                        removeEntry(entry.id),
+                }}
+            />
 
-            <button
-                type="button"
-                onClick={() => removeEntry(entry.id)}
-            >
-                Remove Certificate
-            </button>
-        </li>
+        </div>
     );
 }

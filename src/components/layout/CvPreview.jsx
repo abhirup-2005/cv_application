@@ -32,7 +32,7 @@ export default function CvPreview(props) {
 
       {props.educationList.length > 0 && (
         <>
-          <h2 className="section-title">Education</h2>
+          <h2 className="cv-section-title">Education</h2>
 
           {props.educationList.map((edu) => (
             <div className="entry" key={edu.id}>
@@ -74,7 +74,7 @@ export default function CvPreview(props) {
 
       {props.workList.length > 0 && (
         <>
-          <h2 className="section-title">Experience</h2>
+          <h2 className="cv-section-title">Experience</h2>
 
           {props.workList.map((work) => (
             <div className="entry" key={work.id}>
@@ -125,7 +125,7 @@ export default function CvPreview(props) {
 
       {props.projectList.length > 0 && (
         <>
-          <h2 className="section-title">Projects</h2>
+          <h2 className="cv-section-title">Projects</h2>
 
           {props.projectList.map((project) => (
             <div className="entry" key={project.id}>
@@ -179,7 +179,7 @@ export default function CvPreview(props) {
 
       {props.skillList.length > 0 && (
         <>
-          <h2 className="section-title">Technical Skills</h2>
+          <h2 className="cv-section-title">Technical Skills</h2>
 
           <div className="skills-container">
             {props.skillList.map((category) => (
@@ -201,7 +201,7 @@ export default function CvPreview(props) {
 
       {props.achievementList.length > 0 && (
         <>
-          <h2 className="section-title">Achievements</h2>
+          <h2 className="cv-section-title">Achievements</h2>
 
           <ul className="bullet-list">
 
@@ -219,7 +219,7 @@ export default function CvPreview(props) {
 
       {props.certificateList.length > 0 && (
         <>
-          <h2 className="section-title">Certifications</h2>
+          <h2 className="cv-section-title">Certifications</h2>
 
           {props.certificateList.map((certificate) => (
             <div className="entry" key={certificate.id}>
@@ -269,7 +269,7 @@ export default function CvPreview(props) {
 
       {props.languageList.length > 0 && (
         <>
-          <h2 className="section-title">Languages</h2>
+          <h2 className="cv-section-title">Languages</h2>
 
           <div className="languages-container">
 

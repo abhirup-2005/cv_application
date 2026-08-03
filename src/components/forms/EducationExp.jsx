@@ -1,67 +1,29 @@
-import "../../styles/forms/Education.css";
+import FormCard from "../reusables/FormCard.jsx";
+import SectionTitle from "../reusables/SectionTitle.jsx";
+import FormGroup from "../reusables/FormGroup.jsx";
+import InputRow from "../reusables/InputRow.jsx";
+import DateRow from "../reusables/DateRow.jsx";
+import DynamicList from "../reusables/DynamicList.jsx";
+import ActionButtons from "../reusables/ActionButtons.jsx";
 
-function EducationalInfo({ entry, updateEntry, removeEntry }) {
-    return (
-        <li>
-            <label>
-                School Name:
-                <input
-                    type="text"
-                    value={entry.schoolName}
-                    onChange={(e) => updateEntry(entry.id, "schoolName", e.target.value)}
-                />
-            </label>
-
-            <label>
-                Study:
-                <input
-                    type="text"
-                    value={entry.study}
-                    onChange={(e) => updateEntry(entry.id, "study", e.target.value)}
-                />
-            </label>
-
-            <label>
-                Place:
-                <input
-                    type="text"
-                    value={entry.place}
-                    onChange={(e) => updateEntry(entry.id, "place", e.target.value)}
-                />
-            </label>
-
-            <label>
-                Start Date:
-                <input
-                    type="date"
-                    value={entry.startDate}
-                    onChange={(e) => updateEntry(entry.id, "startDate", e.target.value)}
-                />
-            </label>
-
-             <label>
-                End Date:
-                <input
-                    type="date"
-                    value={entry.endDate}
-                    onChange={(e) => updateEntry(entry.id, "endDate", e.target.value)}
-                />
-            </label>
-            <button onClick={() => removeEntry(entry.id)}>
-                Remove
-            </button>
-
-        </li>
-    );
-}
-
-export default function EducationalExperience({ educationList, setEducationList }) {
+export default function EducationalExperience({ educationList, setEducationList, }) {
     function addEducation() {
-        setEducationList([...educationList, { id: crypto.randomUUID(), schoolName: "", study: "", date: "", }]);
+        setEducationList([...educationList,
+        {
+            id: crypto.randomUUID(),
+            schoolName: "",
+            study: "",
+            place: "",
+            startDate: "",
+            endDate: "",
+        },
+        ]);
     }
 
     function updateEntry(id, field, value) {
-        setEducationList(educationList.map((entry) => entry.id === id ? { ...entry, [field]: value } : entry));
+        setEducationList(educationList.map((entry) =>
+            entry.id === id ? { ...entry, [field]: value } : entry
+        ));
     }
 
     function removeEntry(id) {
@@ -69,19 +31,128 @@ export default function EducationalExperience({ educationList, setEducationList 
     }
 
     return (
-        <div>
-            <h1>Educational Experience</h1>
-            <button onClick={addEducation}>Add</button>
-            <ul>
-                {educationList.map((education) => (
-                    <EducationalInfo
+        <FormCard title="Education">
+
+            <SectionTitle
+                title="Educational Qualifications"
+                subtitle="Add all your schools, colleges and universities."
+            />
+
+            <DynamicList
+                items={educationList}
+                emptyMessage="No education added."
+                renderItem={(education) => (
+                    <EducationInfo
                         key={education.id}
                         entry={education}
                         updateEntry={updateEntry}
                         removeEntry={removeEntry}
                     />
-                ))}
-            </ul>
+                )}
+            />
+
+            <ActionButtons
+                align="left"
+                primary={{
+                    text: "+ Add Education",
+                    onClick: addEducation,
+                }}
+            />
+
+        </FormCard>
+    );
+}
+
+function EducationInfo({ entry, updateEntry, removeEntry, }) {
+    return (
+        <div className="education-card">
+
+            <InputRow>
+
+                <FormGroup label="School / University">
+                    <input
+                        type="text"
+                        value={entry.schoolName}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "schoolName",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+                <FormGroup label="Place">
+                    <input
+                        type="text"
+                        value={entry.place}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "place",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+            </InputRow>
+
+            <FormGroup label="Degree / Course (Include CGPA/Percentage if desired)">
+                <input
+                    type="text"
+                    value={entry.study}
+                    onChange={(e) =>
+                        updateEntry(
+                            entry.id,
+                            "study",
+                            e.target.value
+                        )
+                    }
+                />
+            </FormGroup>
+
+            <DateRow>
+
+                <FormGroup label="Start Date">
+                    <input
+                        type="date"
+                        value={entry.startDate}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "startDate",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+                <FormGroup label="End Date">
+                    <input
+                        type="date"
+                        value={entry.endDate}
+                        onChange={(e) =>
+                            updateEntry(
+                                entry.id,
+                                "endDate",
+                                e.target.value
+                            )
+                        }
+                    />
+                </FormGroup>
+
+            </DateRow>
+
+            <ActionButtons
+                secondary={{
+                    text: "Remove Education",
+                    onClick: () =>
+                        removeEntry(entry.id),
+                }}
+            />
+
         </div>
     );
 }

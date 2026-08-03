@@ -1,402 +1,363 @@
-/* ===========================
-   GOOGLE FONT (OPTIONAL)
-=========================== */
-
-/* Uncomment if you want */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-
-/* ===========================
-   ROOT
-=========================== */
+/* ========================================
+   CV PREVIEW
+======================================== */
 
 .cvPreview {
+
     width: 210mm;
     min-height: 297mm;
 
     margin: 30px auto;
     padding: 28px 36px;
 
-    background: white;
+    background: #fff;
     color: #111;
 
     font-family: "Times New Roman", serif;
     font-size: 14px;
     line-height: 1.35;
 
-    box-shadow: 0 5px 18px rgba(0,0,0,.15);
-
-    box-sizing: border-box;
+    box-shadow: 0 5px 18px rgba(138, 92, 246, .5);
 }
 
-
-/* ===========================
+/* ========================================
    HEADER
-=========================== */
+======================================== */
 
-.cv-header{
-    margin-bottom:22px;
+.cv-header {
+
+    margin-bottom: 22px;
 }
 
-.cv-name{
-    text-align:center;
+.cv-name {
 
-    font-size:44px;
-    font-weight:bold;
+    margin: 0;
 
-    margin:0;
-    padding:0;
+    text-align: center;
+
+    font-size: 44px;
+    font-weight: bold;
 }
 
-.cv-contact{
+.cv-contact {
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 
-    gap:8px;
+    gap: 8px;
 
-    margin-top:8px;
+    margin-top: 8px;
 
-    font-size:15px;
+    font-size: 15px;
 }
 
-.cv-contact span{
-    white-space:nowrap;
+.cv-contact span {
+
+    white-space: nowrap;
 }
 
-.cv-contact span:not(:last-child)::after{
-    content:" | ";
-    margin-left:8px;
-    color:#666;
+.cv-contact span:not(:last-child)::after {
+
+    content: " | ";
+
+    margin-left: 8px;
+
+    color: #666;
 }
 
-
-/* ===========================
+/* ========================================
    SECTION TITLE
-=========================== */
+======================================== */
 
-.section-title{
+.cv-section-title {
 
-    margin-top:22px;
-    margin-bottom:12px;
+    margin: 22px 0 12px;
 
-    padding-bottom:3px;
+    padding-bottom: 3px;
 
-    border-bottom:1px solid #111;
+    border-bottom: 1px solid #111;
 
-    text-transform:uppercase;
-    letter-spacing:1px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 
-    font-size:22px;
-    font-weight:normal;
+    font-size: 22px;
+    font-weight: normal;
 }
 
-
-/* ===========================
+/* ========================================
    ENTRY
-=========================== */
+======================================== */
 
-.entry{
+.entry {
 
-    margin-bottom:18px;
+    margin-bottom: 18px;
 }
 
+.entry:last-child {
 
-/* ===========================
-   HEADER ROW
-=========================== */
-
-.entry-header{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-
-    gap:15px;
+    margin-bottom: 0;
 }
 
-.entry-left{
-    flex:1;
+.entry-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 15px;
 }
 
-.entry-right{
+.entry-left {
 
-    text-align:right;
-
-    min-width:180px;
+    flex: 1;
 }
 
+.entry-right {
 
-/* ===========================
-   SUB HEADER
-=========================== */
+    min-width: 180px;
 
-.entry-subheader{
-
-    display:flex;
-    justify-content:space-between;
-
-    margin-top:2px;
-    margin-bottom:6px;
-
-    color:#444;
+    text-align: right;
 }
 
-.entry-subheader em{
-    font-style:italic;
+.entry-subheader {
+
+    display: flex;
+    justify-content: space-between;
+
+    margin: 2px 0 6px;
+
+    color: #444;
 }
 
-.entry-subheader .entry-right{
-    text-align:right;
+.entry-subheader em,
+.entry em {
+
+    font-style: italic;
 }
 
+.entry-subheader .entry-right {
 
-/* ===========================
-   HEADINGS
-=========================== */
-
-.entry h3{
-
-    margin:0;
-
-    font-size:21px;
-    font-weight:bold;
+    text-align: right;
 }
 
-.entry p{
+.entry h3 {
 
-    margin:0;
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: bold;
 }
 
-.entry em{
-    font-style:italic;
+/* ========================================
+   BULLET LIST
+======================================== */
+
+.bullet-list {
+
+    margin-top: 6px;
+    margin-left: 22px;
 }
 
+.bullet-list:last-child {
 
-/* ===========================
-   BULLETS
-=========================== */
-
-.bullet-list{
-
-    margin-top:6px;
-    margin-left:22px;
+    margin-bottom: 0;
 }
 
-.bullet-list li{
+.bullet-list li {
 
-    margin-bottom:5px;
+    margin-bottom: 5px;
 
-    text-align:justify;
+    text-align: justify;
 }
 
-
-/* ===========================
+/* ========================================
    PROJECT LINKS
-=========================== */
+======================================== */
 
-.project-links{
+.project-links {
 
-    margin-top:3px;
-    margin-bottom:8px;
+    margin: 3px 0 8px;
 
-    font-style:italic;
-    color:#555;
+    color: #555;
+    font-style: italic;
 }
 
-.project-links span{
+.project-links span {
 
-    font-size:14px;
+    font-size: 14px;
 }
 
+/* ========================================
+   CERTIFICATES
+======================================== */
 
-/* ===========================
-   CERTIFICATE
-=========================== */
+.certificate-description {
 
-.certificate-description{
+    margin: 5px 0 6px;
 
-    margin-top:5px;
-    margin-bottom:6px;
-
-    text-align:justify;
+    text-align: justify;
 }
 
-.certificate-links{
+.certificate-links {
 
-    margin-top:5px;
+    margin-top: 5px;
 }
 
-.certificate-links div{
+.certificate-links div {
 
-    margin-bottom:3px;
+    margin-bottom: 3px;
 
-    font-size:14px;
+    font-size: 14px;
 }
 
-
-/* ===========================
+/* ========================================
    SKILLS
-=========================== */
+======================================== */
 
 .skills-container {
+
     display: flex;
     flex-direction: column;
+
     gap: 8px;
+
+    margin-bottom: 8px;
 }
 
 .skill-category {
+
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
+
     gap: 6px;
 }
 
 .skill-category-title {
+
     font-weight: 600;
+
     color: #111827;
 }
 
 .skill-category-skills {
+
     color: #374151;
 }
 
-
-/* ===========================
+/* ========================================
    LANGUAGES
-=========================== */
+======================================== */
 
-.languages-container{
+.languages-container {
 
-    display:flex;
-    flex-wrap:wrap;
+    display: flex;
+    flex-wrap: wrap;
 
-    gap:5px;
+    gap: 5px;
 
-    margin-top:4px;
+    margin: 4px 0 8px;
 }
 
-
-/* ===========================
+/* ========================================
    LINKS
-=========================== */
+======================================== */
 
-a{
+.cvPreview a {
 
-    color:#111;
-    text-decoration:none;
+    color: #111;
+
+    text-decoration: none;
 }
 
-a:hover{
+.cvPreview a:hover {
 
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
-
-/* ===========================
+/* ========================================
    PRINT
-=========================== */
+======================================== */
 
-@media print{
+@media print {
 
-    body{
-        background:white;
+    body {
+
+        background: #fff;
     }
 
-    .cvPreview{
+    .cvPreview {
 
-        margin:0;
-        padding:22mm;
+        width: 210mm;
+        min-height: 297mm;
 
-        width:210mm;
-        min-height:297mm;
+        margin: 0;
+        padding: 22mm;
 
-        box-shadow:none;
+        box-shadow: none;
 
-        page-break-after:always;
+        page-break-after: always;
     }
 }
 
-
-/* ===========================
+/* ========================================
    RESPONSIVE
-=========================== */
+======================================== */
 
-@media(max-width:900px){
+@media (max-width: 900px) {
 
-    .cvPreview{
+    .cvPreview {
 
-        width:100%;
+        width: 100%;
 
-        min-height:auto;
+        min-height: auto;
 
-        padding:24px;
+        margin: 0;
+        padding: 24px;
 
-        margin:0;
-
-        box-shadow:none;
+        box-shadow: none;
     }
 
-    .cv-name{
+    .cv-name {
 
-        font-size:34px;
+        font-size: 34px;
     }
 
-    .cv-contact{
+    .cv-contact {
 
-        flex-direction:column;
-        gap:3px;
+        flex-direction: column;
+
+        gap: 3px;
     }
 
-    .cv-contact span::after{
+    .cv-contact span::after {
 
-        display:none;
+        display: none;
     }
 
     .entry-header,
-    .entry-subheader{
+    .entry-subheader {
 
-        flex-direction:column;
-        align-items:flex-start;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .entry-right{
+    .entry-right {
 
-        text-align:left;
-        min-width:auto;
+        min-width: auto;
+
+        text-align: left;
     }
 
-    .section-title{
+    .cv-section-title {
 
-        font-size:20px;
+        font-size: 20px;
     }
 
-    .entry h3{
+    .entry h3 {
 
-        font-size:18px;
+        font-size: 18px;
     }
-}
-
-
-/* ===========================
-   SMALL DETAILS
-=========================== */
-
-.entry:last-child{
-    margin-bottom:0;
-}
-
-.bullet-list:last-child{
-    margin-bottom:0;
-}
-
-.skills-container,
-.languages-container{
-    margin-bottom:8px;
-}
-
-*{
-    box-sizing:border-box;
 }

@@ -3,8 +3,8 @@ import "../../styles/layout/HeaderBar.css";
 export default function HeaderBar({ showPreview, setShowPreview }) {
   return (
     <div className='header'>
-      <section className='Braning'>CV Application</section>
-      <section className='Buttons'>
+      <section className='branding'>CV Builder</section>
+      <section className='headerButtons'>
         <button className='pdfDownload'>PDF</button>
         <button
           className="previewCV"
