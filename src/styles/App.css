@@ -85,7 +85,7 @@
         display: inline-flex;
     }
 
-    .hideMobile {
+    .mainContent > .hideMobile {
         display: none;
     }
 }
