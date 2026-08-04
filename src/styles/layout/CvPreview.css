@@ -283,23 +283,17 @@
 
 @media print {
 
-    body {
-
-        background: #fff;
-    }
-
     .cvPreview {
 
-        width: 210mm;
-        min-height: 297mm;
+        width: auto;
+        min-height: auto;
 
         margin: 0;
-        padding: 22mm;
+        padding: 15mm;
 
         box-shadow: none;
-
-        page-break-after: always;
     }
+
 }
 
 /* ========================================
@@ -340,15 +334,14 @@
     .entry-header,
     .entry-subheader {
 
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 20px;
     }
 
     .entry-right {
-
-        min-width: auto;
-
-        text-align: left;
+        text-align: right;
     }
 
     .cv-section-title {

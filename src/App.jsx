@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import LeftSidebarForm from './components/layout/LeftSideBarForm.jsx';
 import CvPreview from './components/layout/CvPreview.jsx';
 import HeaderBar from './components/layout/HeaderBar.jsx';
@@ -56,9 +56,14 @@ export default function App() {
 
   const [showPreview, setShowPreview] = useState(false);
 
+  const cvRef = useRef(null);
+
   return (
     <>
-      <HeaderBar showPreview={showPreview} setShowPreview={setShowPreview} />
+      <HeaderBar 
+        showPreview={showPreview} setShowPreview={setShowPreview}
+        cvRef={cvRef} //Now HeaderBar can print that element.
+      />
 
       <div className="mainContent">
         <div className={showPreview ? "hideMobile" : ""}>
@@ -76,6 +81,8 @@ export default function App() {
 
         <div className={showPreview ? "" : "hideMobile"}>
           <CvPreview
+            ref={cvRef} //This is the component I want to print.
+
             generalInfo={generalInfo}
             educationList={educationList}
             workList={workList}

@@ -1,8 +1,13 @@
+import { forwardRef } from "react"; //Normally React components cannot receive refs. Have to "forward" the ref.
+
 import "../../styles/layout/CvPreview.css";
 
-export default function CvPreview(props) {
+const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn't automatically work.
   return (
-    <section className="cvPreview">
+    <section
+      ref={ref}
+      className="cvPreview"
+    >
 
       {/* ================= HEADER ================= */}
 
@@ -286,4 +291,6 @@ export default function CvPreview(props) {
 
     </section>
   );
-}
+})
+
+export default CvPreview;
