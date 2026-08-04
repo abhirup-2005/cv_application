@@ -2,7 +2,7 @@ import { useReactToPrint } from "react-to-print";
 
 import "../../styles/layout/HeaderBar.css";
 
-export default function HeaderBar({ showPreview, setShowPreview, cvRef }) {
+export default function HeaderBar({ showPreview, setShowPreview, cvRef, loadSampleCV, }) {
   const handlePrint = useReactToPrint({
     contentRef: cvRef,
   });
@@ -11,7 +11,13 @@ export default function HeaderBar({ showPreview, setShowPreview, cvRef }) {
     <div className='header'>
       <section className='branding'>CV Builder</section>
       <section className='headerButtons'>
-        <button 
+        <button
+          className="sampleCV"
+          onClick={loadSampleCV}
+        >
+          Sample CV
+        </button>
+        <button
           className='pdfDownload'
           onClick={handlePrint}
         >

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import LeftSidebarForm from './components/layout/LeftSideBarForm.jsx';
 import CvPreview from './components/layout/CvPreview.jsx';
 import HeaderBar from './components/layout/HeaderBar.jsx';
+import * as Sample from './data/sampleData.js';
 
 import './styles/App.css'
 
@@ -73,11 +74,32 @@ export default function App() {
 
   const cvRef = useRef(null);
 
+
+  function loadSampleCV() {
+    setGeneralInfo(Sample.sampleGeneralInfo);
+
+    setEducationList(Sample.sampleEducation);
+
+    setWorkList(Sample.sampleWork);
+
+    setSkillList(Sample.sampleSkills);
+
+    setProjectList(Sample.sampleProjects);
+
+    setAchievementList(Sample.sampleAchievements);
+
+    setCertificateList(Sample.sampleCertificates);
+
+    setLanguageList(Sample.sampleLanguages);
+  }
+
+
   return (
     <>
       <HeaderBar
         showPreview={showPreview} setShowPreview={setShowPreview}
         cvRef={cvRef} //Now HeaderBar can print that element.
+        loadSampleCV={loadSampleCV}
       />
 
       <div className="mainContent">
