@@ -89,3 +89,20 @@
         display: none;
     }
 }
+
+@media print{
+
+    .mainContent{
+
+        display:block;
+        padding:0;
+    }
+
+    .mainContent > :first-child{
+        display:none;
+    }
+
+    .mainContent > :last-child{
+        display:block;
+    }
+}

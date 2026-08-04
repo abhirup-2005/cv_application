@@ -44,9 +44,9 @@ export const sampleEducation = [
 
         durationType: "date",
 
-        startDate: "2022-08",
+        startDate: "2022-08-12",
 
-        endDate: "2026-06",
+        endDate: "2026-06-10",
 
         customDuration: "",
 
@@ -63,7 +63,7 @@ export const sampleWork = [
         position: "Software Engineering Intern",
 
         responsibilities:
-            "Developed React components.\nImproved website performance by 25%.\nCollaborated with cross-functional teams.",
+            "Built reusable React components with cross-functional teams to improve UI consistency and engagement. \nIncreased site speed by 25% using code splitting, lazy loading, and state management refactoring.",
 
         durationType: "custom",
 
@@ -128,7 +128,7 @@ export const sampleProjects = [
         title: "Smart Bus Tracker",
 
         description:
-            "Built using React.\nIntegrated Google Maps.\nResponsive UI for all devices.",
+            "Engineered a performant React application with integrated Google Maps functionality for dynamic geolocation tracking, interactive markers, and spatial data visualization. \nDesigned a responsive, mobile-first UI using flexible layouts and media queries to ensure a seamless experience across mobile, tablet, and desktop screens.",
 
         durationType: "custom",
 
@@ -175,7 +175,7 @@ export const sampleCertificates = [
         title: "Meta Front-End Developer",
 
         description:
-            "Completed Meta Front-End Professional Certificate.",
+            "Completed Meta Front-End Professional Certificate from Courcera.",
 
         durationType: "custom",
 

@@ -37,12 +37,13 @@
    BUTTON GROUP
 ======================================== */
 
-.headerButtons {
+.headerButtons{
 
-    display: flex;
+    display:flex;
+    flex-wrap:wrap;
     align-items: center;
-
-    gap: 12px;
+    justify-content:flex-end;
+    gap:12px;
 }
 
 .headerButtons button {

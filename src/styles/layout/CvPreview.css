@@ -46,6 +46,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    gap: 8px;
+
     flex-wrap: wrap;
 
     margin-top: 10px;
@@ -56,13 +59,16 @@
 .cv-contact span {
 
     white-space: nowrap;
+
+    flex-shrink: 0;
 }
 
 .cv-contact span:not(:last-child)::after {
 
-    content: " | ";
+    content: "|";
 
-    margin: 0 8px;
+    margin-left: 8px;
+    margin-right: 8px;
 
     color: #777;
 }
@@ -192,7 +198,8 @@
    PROJECT LINKS
 ======================================== */
 
-.project-links, .certificate-links {
+.project-links,
+.certificate-links {
 
     margin: 3px 0 8px;
 
@@ -291,17 +298,34 @@
    PRINT
 ======================================== */
 
+@page {
+    size: A4;
+    margin: 0;
+}
+
 @media print {
 
-    .cvPreview {
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
 
-        width: auto;
-        min-height: auto;
+    .cvPreview {
+        display: block;
+
+        width: 210mm;
+        min-height: 297mm;
 
         margin: 0;
-        padding: 15mm;
+        padding: 5mm 10mm;
 
         box-shadow: none;
+
+        overflow: hidden;
     }
 
 }
@@ -310,7 +334,7 @@
    RESPONSIVE
 ======================================== */
 
-@media (max-width: 900px) {
+@media screen and (max-width:900px) {
 
     .cvPreview {
 
@@ -331,14 +355,13 @@
 
     .cv-contact {
 
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
 
-        gap: 4px;
-    }
+        justify-content: center;
+        align-items: center;
 
-    .cv-contact span::after {
-
-        display: none;
+        gap: 6px 12px;
     }
 
     .cv-summary {
