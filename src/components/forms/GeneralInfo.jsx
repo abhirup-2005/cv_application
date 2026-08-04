@@ -18,6 +18,7 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo, }) {
       {
         id: crypto.randomUUID(),
         title: "",
+        customTitle: "",
         url: "",
       },
       ],
@@ -115,6 +116,24 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo, }) {
       </InputRow>
 
       <SectionTitle
+        title="Professional Bio"
+        subtitle="Write a short introduction about yourself."
+      />
+      <FormGroup label="Professional Bio">
+        <textarea
+          rows={5}
+          placeholder="Passionate software developer with experience in..."
+          value={generalInfo.bio}
+          onChange={(e) =>
+            handleChange(
+              "bio",
+              e.target.value
+            )
+          }
+        />
+      </FormGroup>
+
+      <SectionTitle
         title="Useful Links"
         subtitle="Portfolio, GitHub, LinkedIn, etc."
       />
@@ -127,10 +146,8 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo, }) {
 
             <InputRow>
 
-              <FormGroup label="Link Title">
-                <input
-                  type="text"
-                  placeholder="GitHub"
+              <FormGroup label="Platform">
+                <select
                   value={link.title}
                   onChange={(e) =>
                     updateLink(
@@ -139,7 +156,17 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo, }) {
                       e.target.value
                     )
                   }
-                />
+                >
+                  <option value="">Select Platform</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="GitHub">GitHub</option>
+                  <option value="Portfolio">Portfolio</option>
+                  <option value="LeetCode">LeetCode</option>
+                  <option value="Codeforces">Codeforces</option>
+                  <option value="HackerRank">HackerRank</option>
+                  <option value="Website">Website</option>
+                  <option value="Other">Other</option>
+                </select>
               </FormGroup>
 
               <FormGroup label="URL">
@@ -158,6 +185,23 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo, }) {
               </FormGroup>
 
             </InputRow>
+
+            {link.title === "Other" && (
+              <FormGroup label="Custom Title">
+                <input
+                  type="text"
+                  placeholder="Blog"
+                  value={link.customTitle || ""}
+                  onChange={(e) =>
+                    updateLink(
+                      link.id,
+                      "customTitle",
+                      e.target.value
+                    )
+                  }
+                />
+              </FormGroup>
+            )}
 
             <ActionButtons
               secondary={{

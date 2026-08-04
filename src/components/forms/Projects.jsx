@@ -30,6 +30,7 @@ export default function Project({
                 {
                     id: crypto.randomUUID(),
                     title: "",
+                    customTitle: "",
                     url: "",
                 },
             ],
@@ -175,9 +176,8 @@ function ProjectInfo({ entry, updateEntry, addLink, updateLink, removeLink, remo
 
                         <InputRow>
 
-                            <FormGroup label="Link Title">
-                                <input
-                                    type="text"
+                            <FormGroup label="Link Type">
+                                <select
                                     value={link.title}
                                     onChange={(e) =>
                                         updateLink(
@@ -187,7 +187,12 @@ function ProjectInfo({ entry, updateEntry, addLink, updateLink, removeLink, remo
                                             e.target.value
                                         )
                                     }
-                                />
+                                >
+                                    <option value="">Select Link Type</option>
+                                    <option value="GitHub Repo">GitHub Repo</option>
+                                    <option value="Live Demo">Live Demo</option>
+                                    <option value="Other">Other</option>
+                                </select>
                             </FormGroup>
 
                             <FormGroup label="URL">
@@ -206,6 +211,24 @@ function ProjectInfo({ entry, updateEntry, addLink, updateLink, removeLink, remo
                             </FormGroup>
 
                         </InputRow>
+
+                        {link.title === "Other" && (
+                            <FormGroup label="Custom Title">
+                                <input
+                                    type="text"
+                                    placeholder="Documentation / Figma / Video Demo"
+                                    value={link.customTitle || ""}
+                                    onChange={(e) =>
+                                        updateLink(
+                                            entry.id,
+                                            link.id,
+                                            "customTitle",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </FormGroup>
+                        )}
 
                         <ActionButtons
                             secondary={{

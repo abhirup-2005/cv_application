@@ -19,29 +19,53 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
       ref={ref}
       className="cvPreview"
     >
-
       {/* ================= HEADER ================= */}
 
       <header className="cv-header">
+
         <h1 className="cv-name">
           {props.generalInfo.firstName} {props.generalInfo.lastName}
         </h1>
 
         <div className="cv-contact">
+
           {props.generalInfo.phone && (
             <span>{props.generalInfo.phone}</span>
           )}
 
           {props.generalInfo.email && (
-            <span>{props.generalInfo.email}</span>
+            <span>
+              <a
+                href={`mailto:${props.generalInfo.email}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {props.generalInfo.email}
+              </a>
+            </span>
           )}
 
-          {props.generalInfo.links.map((link) => (
-            <span key={link.id}>
-              {link.title}: {link.url}
-            </span>
-          ))}
+          {props.generalInfo.links
+            .filter(link => link.title && link.url)
+            .map((link) => (
+              <span key={link.id}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {link.title === "Other" ? link.customTitle : link.title}
+                </a>
+              </span>
+            ))}
         </div>
+
+        {props.generalInfo.bio && (
+          <p className="cv-summary">
+            {props.generalInfo.bio}
+          </p>
+        )}
+
       </header>
 
       {/* ================= EDUCATION ================= */}
@@ -163,7 +187,7 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
                   {project.links.map((link, index) => (
                     <span key={link.id}>
                       {index !== 0 && " | "}
-                      {link.title}
+                      {link.title === "Other" ? link.customTitle : link.title}
                     </span>
                   ))}
 

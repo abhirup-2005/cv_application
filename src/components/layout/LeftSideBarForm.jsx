@@ -21,9 +21,9 @@ export default function LeftSidebarForm(props) {
 
       <PracticalExperience workList={props.workList} setWorkList={props.setWorkList} />
 
-      <Skill skillList={props.skillList} setSkillList={props.setSkillList}/>
-
       <Project projectList={props.projectList} setProjectList={props.setProjectList}/>
+
+      <Skill skillList={props.skillList} setSkillList={props.setSkillList}/>
 
       <Achievement achievementList={props.achievementList} setAchievementList={props.setAchievementList} />
 
