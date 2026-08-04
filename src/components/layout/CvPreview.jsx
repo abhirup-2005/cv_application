@@ -69,6 +69,13 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
 
                 <div className="entry-left">
                   <em>{edu.study}</em>
+
+                  {edu.grade && (
+                    <>
+                      {" • "}
+                      <span>{edu.grade}</span>
+                    </>
+                  )}
                 </div>
 
                 <div className="entry-right">

@@ -14,6 +14,8 @@ export default function EducationalExperience({ educationList, setEducationList,
             schoolName: "",
             study: "",
             place: "",
+            grade: "",
+
             durationType: "date",
 
             startDate: "",
@@ -105,7 +107,7 @@ function EducationInfo({ entry, updateEntry, removeEntry, }) {
 
             </InputRow>
 
-            <FormGroup label="Degree / Course (Include CGPA/Percentage if desired)">
+            <FormGroup label="Degree / Course">
                 <input
                     type="text"
                     value={entry.study}
@@ -113,6 +115,21 @@ function EducationInfo({ entry, updateEntry, removeEntry, }) {
                         updateEntry(
                             entry.id,
                             "study",
+                            e.target.value
+                        )
+                    }
+                />
+            </FormGroup>
+
+            <FormGroup label="Grade">
+                <input
+                    type="text"
+                    placeholder="8.92 CGPA / 91% / First Class"
+                    value={entry.grade}
+                    onChange={(e) =>
+                        updateEntry(
+                            entry.id,
+                            "grade",
                             e.target.value
                         )
                     }

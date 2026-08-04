@@ -28,6 +28,8 @@ export default function App() {
       schoolName: "",
       study: "",
       place: "",
+      grade: "",
+
       durationType: "date",
 
       startDate: "",
