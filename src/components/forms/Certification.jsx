@@ -2,7 +2,7 @@ import FormCard from "../reusables/FormCard.jsx";
 import SectionTitle from "../reusables/SectionTitle.jsx";
 import FormGroup from "../reusables/FormGroup.jsx";
 import InputRow from "../reusables/InputRow.jsx";
-import DateRow from "../reusables/DateRow.jsx";
+import DurationInput from "../reusables/DurationInput.jsx";
 import LinkCard from "../reusables/LinkCard.jsx";
 import DynamicList from "../reusables/DynamicList.jsx";
 import ActionButtons from "../reusables/ActionButtons.jsx";
@@ -15,8 +15,14 @@ export default function Certificate({ certificateList, setCertificateList, }) {
             id: crypto.randomUUID(),
             title: "",
             description: "",
+            durationType: "date",
+
             startDate: "",
             endDate: "",
+
+            customDuration: "",
+
+            isCurrent: false,
             links: [
                 {
                     id: crypto.randomUUID(),
@@ -135,37 +141,10 @@ function CertificateInfo({ entry, updateEntry, addLink, updateLink, removeLink, 
                 />
             </FormGroup>
 
-            <DateRow>
-
-                <FormGroup label="Issue Date">
-                    <input
-                        type="date"
-                        value={entry.startDate}
-                        onChange={(e) =>
-                            updateEntry(
-                                entry.id,
-                                "startDate",
-                                e.target.value
-                            )
-                        }
-                    />
-                </FormGroup>
-
-                <FormGroup label="Expiry Date">
-                    <input
-                        type="date"
-                        value={entry.endDate}
-                        onChange={(e) =>
-                            updateEntry(
-                                entry.id,
-                                "endDate",
-                                e.target.value
-                            )
-                        }
-                    />
-                </FormGroup>
-
-            </DateRow>
+            <DurationInput
+                entry={entry}
+                updateEntry={updateEntry}
+            />
 
             <FormGroup label="Description">
                 <textarea

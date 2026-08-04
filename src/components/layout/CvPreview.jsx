@@ -3,6 +3,17 @@ import { forwardRef } from "react"; //Normally React components cannot receive r
 import "../../styles/layout/CvPreview.css";
 
 const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn't automatically work.
+  function getDuration(entry) {
+
+    if (entry.durationType === "custom")
+      return entry.customDuration;
+
+    if (entry.isCurrent)
+      return `${entry.startDate} - Present`;
+
+    return `${entry.startDate}${entry.startDate && entry.endDate ? " - " : ""}${entry.endDate}`;
+  }
+
   return (
     <section
       ref={ref}
@@ -61,11 +72,7 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
                 </div>
 
                 <div className="entry-right">
-                  <em>
-                    {edu.startDate}
-                    {edu.startDate && edu.endDate ? " - " : ""}
-                    {edu.endDate}
-                  </em>
+                  <p>{getDuration(edu)}</p>
                 </div>
 
               </div>
@@ -91,11 +98,7 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
                 </div>
 
                 <div className="entry-right">
-                  <p>
-                    {work.startDate}
-                    {work.startDate && work.endDate ? " - " : ""}
-                    {work.endDate}
-                  </p>
+                  <p>{getDuration(work)}</p>
                 </div>
 
               </div>
@@ -142,11 +145,7 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
                 </div>
 
                 <div className="entry-right">
-                  <p>
-                    {project.startDate}
-                    {project.startDate && project.endDate ? " - " : ""}
-                    {project.endDate}
-                  </p>
+                  <p>{getDuration(project)}</p>
                 </div>
 
               </div>
@@ -236,13 +235,7 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
                 </div>
 
                 <div className="entry-right">
-                  <p>
-                    {certificate.startDate}
-                    {certificate.startDate && certificate.endDate
-                      ? " - "
-                      : ""}
-                    {certificate.endDate}
-                  </p>
+                  <p>{getDuration(certificate)}</p>
                 </div>
 
               </div>

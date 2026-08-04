@@ -2,7 +2,7 @@ import FormCard from "../reusables/FormCard.jsx";
 import SectionTitle from "../reusables/SectionTitle.jsx";
 import FormGroup from "../reusables/FormGroup.jsx";
 import InputRow from "../reusables/InputRow.jsx";
-import DateRow from "../reusables/DateRow.jsx";
+import DurationInput from "../reusables/DurationInput.jsx";
 import LinkCard from "../reusables/LinkCard.jsx";
 import DynamicList from "../reusables/DynamicList.jsx";
 import ActionButtons from "../reusables/ActionButtons.jsx";
@@ -18,8 +18,14 @@ export default function Project({
             id: crypto.randomUUID(),
             title: "",
             description: "",
+            durationType: "date",
+
             startDate: "",
             endDate: "",
+
+            customDuration: "",
+
+            isCurrent: false,
             links: [
                 {
                     id: crypto.randomUUID(),
@@ -137,37 +143,10 @@ function ProjectInfo({ entry, updateEntry, addLink, updateLink, removeLink, remo
                 />
             </FormGroup>
 
-            <DateRow>
-
-                <FormGroup label="Start Date">
-                    <input
-                        type="date"
-                        value={entry.startDate}
-                        onChange={(e) =>
-                            updateEntry(
-                                entry.id,
-                                "startDate",
-                                e.target.value
-                            )
-                        }
-                    />
-                </FormGroup>
-
-                <FormGroup label="End Date">
-                    <input
-                        type="date"
-                        value={entry.endDate}
-                        onChange={(e) =>
-                            updateEntry(
-                                entry.id,
-                                "endDate",
-                                e.target.value
-                            )
-                        }
-                    />
-                </FormGroup>
-
-            </DateRow>
+            <DurationInput
+                entry={entry}
+                updateEntry={updateEntry}
+            />
 
             <FormGroup label="Description">
                 <textarea

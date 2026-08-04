@@ -166,6 +166,56 @@
 }
 
 /* ========================================
+   DURATION
+======================================== */
+
+.duration-toggle{
+
+    display:flex;
+
+    margin-bottom:16px;
+
+    overflow:hidden;
+
+    border-radius:8px;
+
+    border:1px solid var(--border-color);
+}
+
+.duration-toggle button{
+
+    flex:1;
+
+    padding:10px;
+
+    background:transparent;
+
+    color:var(--text-color);
+
+    border:none;
+
+    transition:.2s;
+}
+
+.duration-toggle button.active{
+
+    background:var(--primary-color);
+
+    color:white;
+}
+
+.current-checkbox{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:12px;
+}
+
+/* ========================================
    ENTRY CARD
 ======================================== */
 

@@ -28,8 +28,14 @@ export default function App() {
       schoolName: "",
       study: "",
       place: "",
+      durationType: "date",
+
       startDate: "",
       endDate: "",
+
+      customDuration: "",
+
+      isCurrent: false,
     }
   ]);
 
@@ -39,8 +45,15 @@ export default function App() {
       companyName: "",
       position: "",
       responsibilities: "",
+
+      durationType: "date",
+
       startDate: "",
       endDate: "",
+
+      customDuration: "",
+
+      isCurrent: false,
     }
   ]);
 
@@ -60,7 +73,7 @@ export default function App() {
 
   return (
     <>
-      <HeaderBar 
+      <HeaderBar
         showPreview={showPreview} setShowPreview={setShowPreview}
         cvRef={cvRef} //Now HeaderBar can print that element.
       />
