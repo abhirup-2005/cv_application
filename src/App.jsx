@@ -11,8 +11,6 @@ export default function App() {
       firstName: "", lastName: "",
       email: "", phone: "",
       bio: "",
-      linkedIn: "", github: "",
-      portfolio: "",
       links: [
         {
           id: crypto.randomUUID(),

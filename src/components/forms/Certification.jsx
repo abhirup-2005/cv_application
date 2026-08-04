@@ -14,6 +14,7 @@ export default function Certificate({ certificateList, setCertificateList, }) {
         {
             id: crypto.randomUUID(),
             title: "",
+            customTitle: "",
             description: "",
             durationType: "date",
 
@@ -170,9 +171,8 @@ function CertificateInfo({ entry, updateEntry, addLink, updateLink, removeLink, 
 
                         <InputRow>
 
-                            <FormGroup label="Link Title">
-                                <input
-                                    type="text"
+                            <FormGroup label="Link Type">
+                                <select
                                     value={link.title}
                                     onChange={(e) =>
                                         updateLink(
@@ -182,7 +182,15 @@ function CertificateInfo({ entry, updateEntry, addLink, updateLink, removeLink, 
                                             e.target.value
                                         )
                                     }
-                                />
+                                >
+                                    <option value="Certificate Link">
+                                        Certificate Link
+                                    </option>
+
+                                    <option value="Others">
+                                        Others
+                                    </option>
+                                </select>
                             </FormGroup>
 
                             <FormGroup label="URL">
@@ -201,6 +209,24 @@ function CertificateInfo({ entry, updateEntry, addLink, updateLink, removeLink, 
                             </FormGroup>
 
                         </InputRow>
+                        
+                        {link.title === "Others" && (
+                            <FormGroup label="Custom Title">
+                                <input
+                                    type="text"
+                                    placeholder="Ex: Credential Verification"
+                                    value={link.customTitle}
+                                    onChange={(e) =>
+                                        updateLink(
+                                            entry.id,
+                                            link.id,
+                                            "customTitle",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </FormGroup>
+                        )}
 
                         <ActionButtons
                             secondary={{

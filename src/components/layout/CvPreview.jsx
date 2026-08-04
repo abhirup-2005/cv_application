@@ -185,10 +185,15 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
                 <div className="project-links">
 
                   {project.links.map((link, index) => (
-                    <span key={link.id}>
+                    <a
+                      key={link.id}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {index !== 0 && " | "}
                       {link.title === "Other" ? link.customTitle : link.title}
-                    </span>
+                    </a>
                   ))}
 
                 </div>
@@ -281,9 +286,13 @@ const CvPreview = forwardRef((props, ref) => { //<CvPreview ref={cvRef}/> doesn'
                 <div className="certificate-links">
 
                   {certificate.links.map((link) => (
-                    <div key={link.id}>
-                      <strong>{link.title}</strong>: {link.url}
-                    </div>
+                      <a 
+                        key={link.id + 'link'} 
+                        href={link.url} 
+                        target="_blank" 
+                        rel="noreferrer">
+                          {link.title === "Others" ? link.customTitle : link.title}
+                      </a>
                   ))}
 
                 </div>
