@@ -28,7 +28,7 @@
 
     text-align: center;
 
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .cv-name {
@@ -73,24 +73,13 @@
     color: #777;
 }
 
-.cv-contact a {
-
-    color: inherit;
-    text-decoration: none;
-}
-
-.cv-contact a:hover {
-
-    text-decoration: underline;
-}
-
 /* ========================================
    PROFILE
 ======================================== */
 
 .cv-summary {
 
-    margin-top: 14px;
+    margin-top: 10px;
 
     text-align: justify;
 
@@ -105,7 +94,7 @@
 
 .cv-section-title {
 
-    margin: 20px 0 10px;
+    margin: 10px 0 10px;
 
     padding-bottom: 3px;
 
@@ -124,7 +113,7 @@
 
 .entry {
 
-    margin-bottom: 18px;
+    margin-bottom: 10px;
 }
 
 .entry:last-child {
@@ -284,14 +273,22 @@
 
 .cvPreview a {
 
-    color: inherit;
+    color: #444;
 
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: #444;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
 }
 
 .cvPreview a:hover {
 
-    text-decoration: underline;
+    color: #000;
+    text-decoration-color: #000;
 }
 
 /* ========================================
@@ -307,14 +304,18 @@
 
     html,
     body {
+
         width: 210mm;
         height: 297mm;
+
         margin: 0;
         padding: 0;
+
         background: white;
     }
 
     .cvPreview {
+
         display: block;
 
         width: 210mm;
@@ -327,7 +328,6 @@
 
         overflow: hidden;
     }
-
 }
 
 /* ========================================
